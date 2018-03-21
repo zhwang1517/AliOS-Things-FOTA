@@ -50,11 +50,6 @@ void krhino_tick_hook(void);
 void krhino_idle_hook(void);
 
 /**
- * This function will provide idle pre hook
- */
-void krhino_idle_pre_hook(void);
-
-/**
  * This function will provide  krhino_mm_alloc hook
  */
 void krhino_mm_alloc_hook(void *mem, size_t size);

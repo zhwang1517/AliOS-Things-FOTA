@@ -38,7 +38,7 @@ extern "C" {
  *
  *   @return Needed buffer size to match the requested L2CAP MTU.
  */
-#define BT_L2CAP_BUF_SIZE(mtu) (CONFIG_BT_HCI_RESERVE + \
+#define BT_L2CAP_BUF_SIZE(mtu) (CONFIG_BLUETOOTH_HCI_RESERVE + \
 				BT_HCI_ACL_HDR_SIZE + BT_L2CAP_HDR_SIZE + \
 				(mtu))
 
@@ -74,30 +74,30 @@ struct bt_l2cap_chan {
 	struct bt_conn			*conn;
 	/** Channel operations reference */
 	struct bt_l2cap_chan_ops	*ops;
-	sys_snode_t			node;
+	struct bt_l2cap_chan		*_next;
 	bt_l2cap_chan_destroy_t		destroy;
 	/* Response Timeout eXpired (RTX) timer */
 	struct k_delayed_work		rtx_work;
-#if defined(CONFIG_BT_L2CAP_DYNAMIC_CHANNEL)
+#if defined(CONFIG_BLUETOOTH_L2CAP_DYNAMIC_CHANNEL)
 	bt_l2cap_chan_state_t		state;
 	/** Remote PSM to be connected */
-	u16_t			psm;
+	uint16_t			psm;
 	/** Helps match request context during CoC */
-	u8_t				ident;
+	uint8_t				ident;
 	bt_security_t			required_sec_level;
-#endif /* CONFIG_BT_L2CAP_DYNAMIC_CHANNEL */
+#endif /* CONFIG_BLUETOOTH_L2CAP_DYNAMIC_CHANNEL */
 };
 
 /** @brief LE L2CAP Endpoint structure. */
 struct bt_l2cap_le_endpoint {
 	/** Endpoint CID */
-	u16_t			cid;
+	uint16_t			cid;
 	/** Endpoint Maximum Transmission Unit */
-	u16_t			mtu;
+	uint16_t			mtu;
 	/** Endpoint Maximum PDU payload Size */
-	u16_t			mps;
+	uint16_t			mps;
 	/** Endpoint initial credits */
-	u16_t			init_credits;
+	uint16_t			init_credits;
 	/** Endpoint credits */
 	struct k_sem			credits;
 };
@@ -116,7 +116,7 @@ struct bt_l2cap_le_chan {
 	struct net_buf                  *tx_buf;
 	/** Segment SDU packet from upper layer */
 	struct net_buf			*_sdu;
-	u16_t				_sdu_len;
+	uint16_t			_sdu_len;
 };
 
 /** @def BT_L2CAP_LE_CHAN(_ch)
@@ -133,9 +133,9 @@ struct bt_l2cap_le_chan {
 /** @brief BREDR L2CAP Endpoint structure. */
 struct bt_l2cap_br_endpoint {
 	/** Endpoint CID */
-	u16_t			cid;
+	uint16_t			cid;
 	/** Endpoint Maximum Transmission Unit */
-	u16_t			mtu;
+	uint16_t			mtu;
 };
 
 /** @brief BREDR L2CAP Channel structure. */
@@ -186,7 +186,7 @@ struct bt_l2cap_chan_ops {
 	 *  by HCI layer and set to 0 when success and to non-zero (reference to
 	 *  HCI Error Codes) when security/authentication failed.
 	 */
-	void (*encrypt_change)(struct bt_l2cap_chan *chan, u8_t hci_status);
+	void (*encrypt_change)(struct bt_l2cap_chan *chan, uint8_t hci_status);
 
 	/** Channel alloc_buf callback
 	 *
@@ -210,12 +210,12 @@ struct bt_l2cap_chan_ops {
 /** @def BT_L2CAP_CHAN_SEND_RESERVE
  *  @brief Headroom needed for outgoing buffers
  */
-#define BT_L2CAP_CHAN_SEND_RESERVE (CONFIG_BT_HCI_RESERVE + 4 + 4)
+#define BT_L2CAP_CHAN_SEND_RESERVE (CONFIG_BLUETOOTH_HCI_RESERVE + 4 + 4 + 2)
 
 /** @brief L2CAP Server structure. */
 struct bt_l2cap_server {
 	/** Server PSM */
-	u16_t			psm;
+	uint16_t		psm;
 
 	/** Required minimim security level */
 	bt_security_t		sec_level;
@@ -232,7 +232,7 @@ struct bt_l2cap_server {
 	 */
 	int (*accept)(struct bt_conn *conn, struct bt_l2cap_chan **chan);
 
-	sys_snode_t node;
+	struct bt_l2cap_server	*_next;
 };
 
 /** @brief Register L2CAP server.
@@ -278,7 +278,7 @@ int bt_l2cap_br_server_register(struct bt_l2cap_server *server);
  *  @return 0 in case of success or negative value in case of error.
  */
 int bt_l2cap_chan_connect(struct bt_conn *conn, struct bt_l2cap_chan *chan,
-			  u16_t psm);
+			  uint16_t psm);
 
 /** @brief Disconnect L2CAP channel
  *
@@ -295,8 +295,9 @@ int bt_l2cap_chan_disconnect(struct bt_l2cap_chan *chan);
 
 /** @brief Send data to L2CAP channel
  *
- *  Send data from buffer to the channel. If credits are not available, buf will
- *  be queued and sent as and when credits are received from peer.
+ *  Send data from buffer to the channel. This procedure may block waiting for
+ *  credits to send data therefore it shall be used from a fiber to be able to
+ *  receive credits when necessary.
  *  Regarding to first input parameter, to get details see reference description
  *  to bt_l2cap_chan_connect() API above.
  *

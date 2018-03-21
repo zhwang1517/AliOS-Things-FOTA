@@ -4,6 +4,23 @@
 
 #include <k_api.h>
 
+#if (RHINO_CONFIG_DYNTICKLESS > 0)
+void krhino_tickless_proc(void)
+{
+    CPSR_ALLOC();
+
+#if (RHINO_CONFIG_INTRPT_GUARD > 0)
+    soc_intrpt_guard();
+#endif
+
+#if (RHINO_CONFIG_USER_HOOK > 0)
+    krhino_tick_hook();
+#endif
+
+    tick_list_update();
+
+}
+#else
 void krhino_tick_proc(void)
 {
 #if (RHINO_CONFIG_INTRPT_GUARD > 0)
@@ -14,22 +31,32 @@ void krhino_tick_proc(void)
     krhino_tick_hook();
 #endif
 
-    tick_list_update(1);
+    tick_list_update();
 
 #if (RHINO_CONFIG_SCHED_RR > 0)
-    time_slice_update();
+    time_slice_update(g_active_task[cpu_cur_get()]->prio);
 #endif
 }
+#endif
 
 sys_time_t krhino_sys_tick_get(void)
 {
-    CPSR_ALLOC();
-
     sys_time_t tick_tmp;
 
+#if (RHINO_CONFIG_DYNTICKLESS > 0)
+    tick_t elapsed_ticks;
+
+    CPSR_ALLOC();
+
     RHINO_CPU_INTRPT_DISABLE();
-    tick_tmp = g_tick_count;
+
+    elapsed_ticks = soc_elapsed_ticks_get();
+    tick_tmp = g_sys_time_tick + (sys_time_t)(elapsed_ticks);
+
     RHINO_CPU_INTRPT_ENABLE();
+#else
+    tick_tmp = g_sys_time_tick;
+#endif
 
     return tick_tmp;
 }

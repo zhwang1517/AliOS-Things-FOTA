@@ -22,8 +22,8 @@ extern "C" {
 #endif
 
 
-extern int *__errno(void);
-#define errno (*__errno())
+extern int *_get_errno(void);
+#define errno (*_get_errno())
 
 /*
  * POSIX Error codes

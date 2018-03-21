@@ -20,7 +20,6 @@ extern "C" {
 #endif
 
 #define snprintk snprintf
-#define printk printf
 
 #ifdef __cplusplus
 }

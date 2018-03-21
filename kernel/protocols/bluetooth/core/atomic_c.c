@@ -18,9 +18,8 @@
  * (originally from x86's atomic.c)
  */
 
+#include <zephyr.h>
 #include <atomic.h>
-#include <toolchain.h>
-#include <arch/cpu.h>
 
 /**
  *
@@ -43,21 +42,21 @@
  * @return Returns 1 if <new_value> is written, 0 otherwise.
  */
 int atomic_cas(atomic_t *target, atomic_val_t old_value,
-			  atomic_val_t new_value)
+               atomic_val_t new_value)
 {
-	unsigned int key;
-	int ret = 0;
+    unsigned int key;
+    int ret = 0;
 
-	key = irq_lock();
+    key = irq_lock();
 
-	if (*target == old_value) {
-		*target = new_value;
-		ret = 1;
-	}
+    if (*target == old_value) {
+        *target = new_value;
+        ret = 1;
+    }
 
-	irq_unlock(key);
+    irq_unlock(key);
 
-	return ret;
+    return ret;
 }
 
 /**
@@ -75,17 +74,17 @@ int atomic_cas(atomic_t *target, atomic_val_t old_value,
  */
 atomic_val_t atomic_add(atomic_t *target, atomic_val_t value)
 {
-	unsigned int key;
-	atomic_val_t ret;
+    unsigned int key;
+    atomic_val_t ret;
 
-	key = irq_lock();
+    key = irq_lock();
 
-	ret = *target;
-	*target += value;
+    ret = *target;
+    *target += value;
 
-	irq_unlock(key);
+    irq_unlock(key);
 
-	return ret;
+    return ret;
 }
 
 /**
@@ -103,17 +102,17 @@ atomic_val_t atomic_add(atomic_t *target, atomic_val_t value)
  */
 atomic_val_t atomic_sub(atomic_t *target, atomic_val_t value)
 {
-	unsigned int key;
-	atomic_val_t ret;
+    unsigned int key;
+    atomic_val_t ret;
 
-	key = irq_lock();
+    key = irq_lock();
 
-	ret = *target;
-	*target -= value;
+    ret = *target;
+    *target -= value;
 
-	irq_unlock(key);
+    irq_unlock(key);
 
-	return ret;
+    return ret;
 }
 
 /**
@@ -129,17 +128,17 @@ atomic_val_t atomic_sub(atomic_t *target, atomic_val_t value)
  */
 atomic_val_t atomic_inc(atomic_t *target)
 {
-	unsigned int key;
-	atomic_val_t ret;
+    unsigned int key;
+    atomic_val_t ret;
 
-	key = irq_lock();
+    key = irq_lock();
 
-	ret = *target;
-	(*target)++;
+    ret = *target;
+    (*target)++;
 
-	irq_unlock(key);
+    irq_unlock(key);
 
-	return ret;
+    return ret;
 }
 
 /**
@@ -155,17 +154,17 @@ atomic_val_t atomic_inc(atomic_t *target)
  */
 atomic_val_t atomic_dec(atomic_t *target)
 {
-	unsigned int key;
-	atomic_val_t ret;
+    unsigned int key;
+    atomic_val_t ret;
 
-	key = irq_lock();
+    key = irq_lock();
 
-	ret = *target;
-	(*target)--;
+    ret = *target;
+    (*target)--;
 
-	irq_unlock(key);
+    irq_unlock(key);
 
-	return ret;
+    return ret;
 }
 
 /**
@@ -182,7 +181,7 @@ atomic_val_t atomic_dec(atomic_t *target)
  */
 atomic_val_t atomic_get(const atomic_t *target)
 {
-	return *target;
+    return *target;
 }
 
 /**
@@ -199,17 +198,17 @@ atomic_val_t atomic_get(const atomic_t *target)
  */
 atomic_val_t atomic_set(atomic_t *target, atomic_val_t value)
 {
-	unsigned int key;
-	atomic_val_t ret;
+    unsigned int key;
+    atomic_val_t ret;
 
-	key = irq_lock();
+    key = irq_lock();
 
-	ret = *target;
-	*target = value;
+    ret = *target;
+    *target = value;
 
-	irq_unlock(key);
+    irq_unlock(key);
 
-	return ret;
+    return ret;
 }
 
 /**
@@ -226,17 +225,17 @@ atomic_val_t atomic_set(atomic_t *target, atomic_val_t value)
  */
 atomic_val_t atomic_clear(atomic_t *target)
 {
-	unsigned int key;
-	atomic_val_t ret;
+    unsigned int key;
+    atomic_val_t ret;
 
-	key = irq_lock();
+    key = irq_lock();
 
-	ret = *target;
-	*target = 0;
+    ret = *target;
+    *target = 0;
 
-	irq_unlock(key);
+    irq_unlock(key);
 
-	return ret;
+    return ret;
 }
 
 /**
@@ -254,17 +253,17 @@ atomic_val_t atomic_clear(atomic_t *target)
  */
 atomic_val_t atomic_or(atomic_t *target, atomic_val_t value)
 {
-	unsigned int key;
-	atomic_val_t ret;
+    unsigned int key;
+    atomic_val_t ret;
 
-	key = irq_lock();
+    key = irq_lock();
 
-	ret = *target;
-	*target |= value;
+    ret = *target;
+    *target |= value;
 
-	irq_unlock(key);
+    irq_unlock(key);
 
-	return ret;
+    return ret;
 }
 
 /**
@@ -282,17 +281,17 @@ atomic_val_t atomic_or(atomic_t *target, atomic_val_t value)
  */
 atomic_val_t atomic_xor(atomic_t *target, atomic_val_t value)
 {
-	unsigned int key;
-	atomic_val_t ret;
+    unsigned int key;
+    atomic_val_t ret;
 
-	key = irq_lock();
+    key = irq_lock();
 
-	ret = *target;
-	*target ^= value;
+    ret = *target;
+    *target ^= value;
 
-	irq_unlock(key);
+    irq_unlock(key);
 
-	return ret;
+    return ret;
 }
 
 /**
@@ -310,17 +309,17 @@ atomic_val_t atomic_xor(atomic_t *target, atomic_val_t value)
  */
 atomic_val_t atomic_and(atomic_t *target, atomic_val_t value)
 {
-	unsigned int key;
-	atomic_val_t ret;
+    unsigned int key;
+    atomic_val_t ret;
 
-	key = irq_lock();
+    key = irq_lock();
 
-	ret = *target;
-	*target &= value;
+    ret = *target;
+    *target &= value;
 
-	irq_unlock(key);
+    irq_unlock(key);
 
-	return ret;
+    return ret;
 }
 
 /**
@@ -338,15 +337,15 @@ atomic_val_t atomic_and(atomic_t *target, atomic_val_t value)
  */
 atomic_val_t atomic_nand(atomic_t *target, atomic_val_t value)
 {
-	unsigned int key;
-	atomic_val_t ret;
+    unsigned int key;
+    atomic_val_t ret;
 
-	key = irq_lock();
+    key = irq_lock();
 
-	ret = *target;
-	*target = ~(*target & value);
+    ret = *target;
+    *target = ~(*target & value);
 
-	irq_unlock(key);
+    irq_unlock(key);
 
-	return ret;
+    return ret;
 }

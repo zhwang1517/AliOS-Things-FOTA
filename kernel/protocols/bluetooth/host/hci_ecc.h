@@ -6,5 +6,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+#if defined(CONFIG_BLUETOOTH_TINYCRYPT_ECC)
 void bt_hci_ecc_init(void);
-int bt_hci_ecc_send(struct net_buf *buf);
+#else
+#define bt_hci_ecc_init()
+#endif /* CONFIG_BLUETOOTH_TINYCRYPT_ECC */

@@ -21,7 +21,6 @@ $(NAME)_SOURCES := Lora/Crypto/aes.c                \
                    Lora/Mac/region/RegionUS915-Hybrid.c \
                    Lora/Mac/LoRaMac.c               \
                    Lora/Mac/LoRaMacCrypto.c    \
-				   Lora/hal/lorawan_port.c    \
 				   ../../../device/lora/eml3047_lrwan/eml3047.c    \
 				   ../../../device/lora/sx1276/sx1276.c    \
 				   # BSP/EML3047/eml3047.c              \
@@ -35,8 +34,7 @@ GLOBAL_INCLUDES +=  .            \
 					Lora/Mac         \
 					Lora/Core        \
 					Lora/Mac/region  \
-					Lora/Utilities   \
-					Lora/hal
+					Lora/Utilities
 					# BSP/EML3047  \
 					# BSP/sx1276       \
 

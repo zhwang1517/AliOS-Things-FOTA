@@ -77,11 +77,11 @@
 #define __ASSERT(test, fmt, ...)                                   \
 	do {                                                       \
 		if (!(test)) {                                     \
-			printk("ASSERTION FAIL [%s] @ %s:%d:\n\t", \
+			SYS_LOG_ERR("ASSERTION FAIL [%s] @ %s:%d:\n\t", \
 			       _STRINGIFY(test),                   \
 			       __FILE__,                           \
 			       __LINE__);                          \
-			printk(fmt, ##__VA_ARGS__);                \
+			SYS_LOG_ERR(fmt, ##__VA_ARGS__);                \
 			for (;;)                                   \
 				; /* spin thread */                \
 		}                                                  \
@@ -108,7 +108,5 @@
 	} while ((0))
 #define __ASSERT_EVAL(expr1, expr2, test, fmt, ...) expr1
 #endif
-
-#define __ASSERT_NO_MSG(test) __ASSERT(test, "")
 
 #endif /* ___ASSERT__H_ */

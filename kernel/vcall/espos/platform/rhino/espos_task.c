@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include <assert.h>
+
 #include "k_api.h"
 #include "espos_err.h"
 #include "espos_task.h"
@@ -58,8 +60,8 @@ esp_err_t espos_task_create_on_cpu (
     os_task_size = stack_size;
 #endif
 
-    prio = ESPOS_TASK_PRIO_NUM - prio;
-    prio = prio <= 0 ? 1 : prio;
+    prio = RHINO_CONFIG_USER_PRI_MAX - prio;
+    assert(prio > 10);
     ret = krhino_task_dyn_create(ptask, name, arg, prio, ticks,
                         os_task_size, entry, auto_run);
 
@@ -225,7 +227,7 @@ espos_cpu_t espos_task_get_affinity(espos_task_t task)
 
 size_t espos_task_prio_num(void)
 {
-    return RHINO_CONFIG_USER_PRI_MAX + 1;
+    return RHINO_CONFIG_USER_PRI_MAX + 1 - 10;
 }
 
 #if 0

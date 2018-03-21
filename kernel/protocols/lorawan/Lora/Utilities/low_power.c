@@ -47,7 +47,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "hw.h"
 #include "low_power.h"
-#include "lorawan_port.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -123,10 +122,10 @@ void LowPower_Handler( void )
     
     DBG_PRINTF_CRITICAL("dz\n\r");
     
-    aos_lrwan_chg_mode.enter_stop_mode();
+    HW_EnterStopMode( );
     
     /* mcu dependent. to be implemented by user*/
-    aos_lrwan_chg_mode.exit_stop_mode();
+    HW_ExitStopMode();
     
     HW_RTC_setMcuWakeUpTime( );
   }
@@ -134,7 +133,7 @@ void LowPower_Handler( void )
   {
     DBG_PRINTF_CRITICAL("z\n\r");
     
-    aos_lrwan_chg_mode.enter_sleep_mode();
+    HW_EnterSleepMode( );
   }
   
 }

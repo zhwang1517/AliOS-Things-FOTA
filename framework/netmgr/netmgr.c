@@ -10,8 +10,9 @@
 #include <hal/hal.h>
 
 #ifdef WITH_LWIP
-#include <lwip/priv/tcp_priv.h>
-#include <lwip/udp.h>
+extern void tcp_init(void);
+extern void udp_init(void);
+extern void srand(unsigned int seed);
 #endif
 
 #include "netmgr.h"
@@ -37,9 +38,15 @@
 #define MAX_RETRY_CONNECT 120
 #define RETRY_INTERVAL_MS 500
 
+#define HOTSPOT_AP "aha"
+#define ROUTER_AP "adha"
+
 typedef struct {
     char ssid[33];
     char pwd[65];
+#ifdef STM32L475xx
+    char security[MAX_SECURITY_SIZE + 1];
+#endif
 } wifi_conf_t;
 
 typedef struct {
@@ -238,6 +245,37 @@ static const hal_wifi_event_cb_t g_wifi_hal_event = {
     .fatal_err           = netmgr_fatal_err_event,
 };
 
+#ifdef STM32L475xx
+static void set_access_security(hal_wifi_init_type_t *wifi_type, char *security)
+{
+    if ( strcmp( security, "open" ) == 0 ) {
+        wifi_type->access_sec = WIFI_ECN_OPEN;
+    } else if ( strcmp( security, "wep" ) == 0 ) {
+        wifi_type->access_sec = WIFI_ECN_WEP;
+    } else if ( strcmp( security, "wpa" ) == 0 ) {
+        wifi_type->access_sec = WIFI_ECN_WPA_PSK;
+    } else if ( strcmp( security, "wpa2" ) == 0 ) {
+        wifi_type->access_sec = WIFI_ECN_WPA2_PSK;
+    } else {
+        // set WIFI_ECN_WPA2_PSK as default
+        wifi_type->access_sec = WIFI_ECN_WPA2_PSK;
+        LOGE("netmgr", "Invalid access security settings! Only support open|wep|wpa|wpa2");
+    }
+}
+
+static bool valid_access_security(char *security)
+{
+    bool ret = false;
+    if ( strcmp( security, "open" ) == 0
+         || strcmp( security, "wep" ) == 0
+         || strcmp( security, "wpa" ) == 0
+         || strcmp( security, "wpa2" ) == 0 ) {
+        ret = true;
+    }
+    return ret;
+}
+#endif
+
 static void reconnect_wifi(void *arg)
 {
     hal_wifi_module_t    *module;
@@ -251,6 +289,9 @@ static void reconnect_wifi(void *arg)
     type.dhcp_mode = DHCP_CLIENT;
     strncpy(type.wifi_ssid, ap_config->ssid, sizeof(type.wifi_ssid) - 1);
     strncpy(type.wifi_key, ap_config->pwd, sizeof(type.wifi_key) - 1);
+#ifdef STM32L475xx
+    set_access_security(&type, ap_config->security);
+#endif
     hal_wifi_start(module, &type);
 }
 
@@ -269,9 +310,14 @@ static void get_wifi_ssid(void)
     memset(g_netmgr_cxt.ap_config.pwd, 0, sizeof(g_netmgr_cxt.ap_config.pwd));
     strncpy(g_netmgr_cxt.ap_config.pwd, g_netmgr_cxt.saved_conf.pwd,
             sizeof(g_netmgr_cxt.ap_config.pwd) - 1);
+#ifdef STM32L475xx
+    memset(g_netmgr_cxt.ap_config.security, 0, sizeof(g_netmgr_cxt.ap_config.security));
+    strncpy(g_netmgr_cxt.ap_config.security, g_netmgr_cxt.saved_conf.security,
+            sizeof(g_netmgr_cxt.ap_config.security) - 1);
+#endif
 }
 
-static int clear_wifi_ssid(void)
+int clear_wifi_ssid(void)
 {
     int ret = 0;
 
@@ -296,6 +342,11 @@ static int set_wifi_ssid(void)
     strncpy(g_netmgr_cxt.saved_conf.pwd,
             g_netmgr_cxt.ap_config.pwd,
             sizeof(g_netmgr_cxt.saved_conf.pwd) - 1);
+#ifdef STM32L475xx
+    strncpy(g_netmgr_cxt.saved_conf.security,
+            g_netmgr_cxt.ap_config.security,
+            sizeof(g_netmgr_cxt.saved_conf.security) - 1);
+#endif
     ret = aos_kv_set(NETMGR_WIFI_KEY, (unsigned char *)&g_netmgr_cxt.saved_conf,
                      sizeof(wifi_conf_t), 1);
 
@@ -305,7 +356,12 @@ static int set_wifi_ssid(void)
 static void handle_wifi_disconnect(void)
 {
     g_netmgr_cxt.disconnected_times++;
-
+   
+    if (strcmp(g_netmgr_cxt.ap_config.ssid, HOTSPOT_AP) == 0 ||
+        strcmp(g_netmgr_cxt.ap_config.ssid, ROUTER_AP) == 0) {
+	    LOGI(TAG, "in hotap or router ap mode, clear ap config.");
+     }
+ 
     stop_mesh();
 
 #if 0 // low level handle disconnect
@@ -338,9 +394,14 @@ static void netmgr_events_executor(input_event_t *eventinfo, void *priv_data)
             break;
         case CODE_WIFI_ON_PRE_GOT_IP:
             if (g_netmgr_cxt.doing_smartconfig) {
-                g_netmgr_cxt.autoconfig_chain->config_result_cb(
-                    0, g_netmgr_cxt.ipv4_owned);
-                g_netmgr_cxt.autoconfig_chain->autoconfig_stop();
+                if (strcmp(g_netmgr_cxt.ap_config.ssid, HOTSPOT_AP) != 0 && strcmp(g_netmgr_cxt.ap_config.ssid, ROUTER_AP) != 0) {
+                    LOGI(TAG, "Let's post GOT_IP event.");
+                    g_netmgr_cxt.autoconfig_chain->config_result_cb(
+                        0, g_netmgr_cxt.ipv4_owned);
+                    g_netmgr_cxt.autoconfig_chain->autoconfig_stop();
+                } else {
+                    LOGI(TAG, "In hotspot mode, do not post GOT_IP event here.");
+                }
             } else {
                 aos_post_event(EV_WIFI, CODE_WIFI_ON_GOT_IP,
                                (unsigned long)(&g_netmgr_cxt.ipv4_owned));
@@ -391,7 +452,6 @@ static void netmgr_wifi_config_start(void)
 static int32_t has_valid_ap(void)
 {
     int32_t len = strlen(g_netmgr_cxt.ap_config.ssid);
-
     if (len <= 0) {
         return 0;
     }
@@ -421,9 +481,9 @@ void netmgr_clear_ap_config(void)
 {
     clear_wifi_ssid();
 }
+
 AOS_EXPORT(void, netmgr_clear_ap_config, void);
 
-#define HOTSPOT_AP "aha"
 int netmgr_set_ap_config(netmgr_ap_config_t *config)
 {
     int ret = 0;
@@ -437,9 +497,24 @@ int netmgr_set_ap_config(netmgr_ap_config_t *config)
             sizeof(g_netmgr_cxt.saved_conf.ssid) - 1);
     strncpy(g_netmgr_cxt.saved_conf.pwd, config->pwd,
             sizeof(g_netmgr_cxt.saved_conf.pwd) - 1);
+#ifdef STM32L475xx
+    strncpy(g_netmgr_cxt.ap_config.security,
+            config->security, MAX_SECURITY_SIZE);
+    strncpy(g_netmgr_cxt.saved_conf.security, config->security,
+            sizeof(g_netmgr_cxt.saved_conf.security) - 1);
+    // STM32L475E ip stack running on WiFi MCU, can only configure with CLI(no ywss)
+    // So save the wifi config while config from CLI
+
+    if (valid_access_security(g_netmgr_cxt.ap_config.security)) {
+        if (strcmp(config->ssid, HOTSPOT_AP) != 0)
+            ret = aos_kv_set(NETMGR_WIFI_KEY, &g_netmgr_cxt.saved_conf,
+                             sizeof(wifi_conf_t), 1);
+    }
+#else
     if (strcmp(config->ssid, HOTSPOT_AP) != 0) // Do not save hotspot AP
         ret = aos_kv_set(NETMGR_WIFI_KEY, &g_netmgr_cxt.saved_conf,
                          sizeof(wifi_conf_t), 1);
+#endif
     return ret;
 }
 
@@ -468,7 +543,11 @@ static void handle_netmgr_cmd(char *pwbuf, int blen, int argc, char **argv)
     if (strcmp(rtype, "clear") == 0) {
         netmgr_clear_ap_config();
     } else if (strcmp(rtype, "connect") == 0) {
+#ifdef STM32L475xx
+        if (argc != 5) {
+#else
         if (argc != 4) {
+#endif
             return;
         }
 
@@ -476,6 +555,9 @@ static void handle_netmgr_cmd(char *pwbuf, int blen, int argc, char **argv)
 
         strncpy(config.ssid, argv[2], sizeof(config.ssid) - 1);
         strncpy(config.pwd, argv[3], sizeof(config.pwd) - 1);
+#ifdef STM32L475xx
+        strncpy(config.security, argv[4], sizeof(config.security) - 1);
+#endif
         netmgr_set_ap_config(&config);
         netmgr_start(false);
     } else {
@@ -485,7 +567,11 @@ static void handle_netmgr_cmd(char *pwbuf, int blen, int argc, char **argv)
 
 static struct cli_command ncmd = {
     .name = "netmgr",
+#ifdef STM32L475xx
+    .help = "netmgr [start|clear|connect ssid password open|wep|wpa|wpa2]",
+#else
     .help = "netmgr [start|clear|connect ssid password]",
+#endif
     .function = handle_netmgr_cmd,
 };
 
@@ -506,6 +592,7 @@ int netmgr_init(void)
 #else
     add_autoconfig_plugin(&g_def_smartconfig);
 #endif
+    
     hal_wifi_install_event(g_netmgr_cxt.wifi_hal_mod, &g_wifi_hal_event);
     read_persistent_conf();
 
