@@ -1,0 +1,19 @@
+TARGET            += awss_sample
+SRCS              := awss_sample.c
+
+HDR_REFS          += base sdk-encap
+CFLAGS            +=
+
+DEPENDS           += \
+    layers/cmp \
+    base/utils \
+    base/log \
+    hal-impl \
+
+LDFLAGS           += -lilop-cmp \
+                     -lilop-mqtt \
+                     -lilop-utils \
+                     -lilop-log \
+                     -lilop-hal \
+                     -lilop-tls \
+	    	     -lrt
