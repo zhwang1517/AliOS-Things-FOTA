@@ -179,3 +179,16 @@ size_t _write( int handle, const unsigned char * buffer, size_t size )
 	}
   	return size;
 }
+
+extern unsigned char _end[];
+static unsigned char *sbrk_heap_top = _end;
+caddr_t _sbrk( int incr )
+{
+    unsigned char *prev_heap;
+
+    prev_heap = sbrk_heap_top;
+
+    sbrk_heap_top += incr;
+
+    return (caddr_t) prev_heap;
+}

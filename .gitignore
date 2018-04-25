@@ -31,3 +31,4 @@ $Recycle.Bin
 .sconsign.dblite
 ckhobbit*.map
 projects/autogen/*
+platform/mcu/msp432/IOT-MSP432/examples/MSP432P4xx/mxchip/iot_sdk/Debug__GNU
