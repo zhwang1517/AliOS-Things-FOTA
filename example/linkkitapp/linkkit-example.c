@@ -57,8 +57,8 @@ static void wifi_service_event(input_event_t *event, void *priv_data) {
     }
 
     if(awss_running) {
-        aos_post_delayed_action(200,reboot_system,NULL);
-        return;
+        //aos_post_delayed_action(200,reboot_system,NULL);
+        //return;
     }
     if (!linkkit_started) {
         linkkit_app();
