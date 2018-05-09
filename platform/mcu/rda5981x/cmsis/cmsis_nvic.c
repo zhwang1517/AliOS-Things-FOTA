@@ -324,7 +324,7 @@ void HardFault_Handler(void)
     __asm(" tst lr, #4\n"
         "ite eq\n"
         "mrseq r0, msp\n"
-        "mrsne r0, msp\n"
+        "mrsne r0, psp\n"
         "b HardFault_Handler_C\n");
 }
 
@@ -333,7 +333,7 @@ void MemManage_Handler(void)
     __asm(" tst lr, #4\n"
         "ite eq\n"
         "mrseq r0, msp\n"
-        "mrsne r0, msp\n"
+        "mrsne r0, psp\n"
         "b MemManage_Handler_C\n");
 }
 
@@ -342,7 +342,7 @@ void BusFault_Handler(void)
     __asm(" tst lr, #4\n"
         "ite eq\n"
         "mrseq r0, msp\n"
-        "mrsne r0, msp\n"
+        "mrsne r0, psp\n"
         "b BusFault_Handler_C\n");
 }
 
@@ -351,7 +351,7 @@ void UsageFault_Handler(void)
     __asm(" tst lr, #4\n"
         "ite eq\n"
         "mrseq r0, msp\n"
-        "mrsne r0, msp\n"
+        "mrsne r0, psp\n"
         "b UsageFault_Handler_C\n");
 }
 

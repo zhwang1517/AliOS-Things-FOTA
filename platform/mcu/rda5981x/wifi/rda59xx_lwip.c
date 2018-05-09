@@ -245,7 +245,7 @@ static void rda59xx_sta_netif_status_irq(struct netif *lwip_netif)
 }
 
 
-void rda59xx_sta_netif_init(struct netif *netif)
+err_t rda59xx_sta_netif_init(struct netif *netif)
 {
     netif->name[0] = 's';
     netif->name[1] = 't';
@@ -270,7 +270,7 @@ void rda59xx_sta_netif_init(struct netif *netif)
     netif_set_link_callback(&lwip_sta_netif, rda59xx_sta_netif_link_irq);
     netif_set_status_callback(&lwip_sta_netif, rda59xx_sta_netif_status_irq);    
     netif_set_default(&lwip_sta_netif);
-    return;
+    return ERR_OK;
 }
 
 static void rda59xx_ap_netif_link_irq(struct netif *lwip_netif)
@@ -281,7 +281,7 @@ static void rda59xx_ap_netif_link_irq(struct netif *lwip_netif)
     return;
 }
 
-void rda59xx_ap_netif_init(struct netif *netif)
+err_t rda59xx_ap_netif_init(struct netif *netif)
 {
     netif->name[0] = 'a';
     netif->name[1] = 'p';
@@ -306,6 +306,8 @@ void rda59xx_ap_netif_init(struct netif *netif)
     netif_set_link_callback(&lwip_ap_netif, rda59xx_ap_netif_link_irq);
     if(netif_default == NULL)
         netif_set_default(&lwip_ap_netif);
+    
+    return ERR_OK;
 }
 
 

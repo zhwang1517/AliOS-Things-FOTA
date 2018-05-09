@@ -20,7 +20,7 @@
 //debug info
 //dbg level, 0 ~ close 1 ~ error 2 ~ info 3 ~ debug
 //dump, 0 ~ close 1 ~ open
-r_u32 rda_wland_dbg_level = 0;
+r_u32 rda_wland_dbg_level = 2;
 r_u32 rda_wpa_dbg_level = 0;
 r_u32 rda_maclib_dbg_level = 0;
 r_u32 rda_wland_dump = 0;
@@ -79,7 +79,7 @@ r_void rda59xx_get_macaddr(r_u8 *macaddr, r_u32 mode)
     macaddr[2] = 0x36;
     macaddr[3] = 0x60;
     macaddr[4] = 0xD8;
-    macaddr[5] = 0xF0;
+    macaddr[5] = 0x05;
     
     if(mode == 1){
         if(macaddr[0] & 0x04)
@@ -383,17 +383,22 @@ static r_void rda59xx_daemon(r_void *arg)
 {
     rda_msg msg;
     r_s32 res;
+    r_u32 stop_reconnect = 0;
 
     while(1){
         rda_queue_recv(daemon_queue, (r_u32)&msg, RDA_WAIT_FOREVER);
         switch(msg.type)
         {   
             case DAEMON_SNIFFER_ENABLE:
+                if(module_state & STATE_STA_RC)
+                    stop_reconnect = 1;
                 res = rda59xx_sniffer_enable_internal((sniffer_handler_t)(msg.arg1));
                 rda_sem_release((r_void *)msg.arg3);
                 module_state |= STATE_SNIFFER;
                 break;
             case DAEMON_SNIFFER_DISABLE:
+                if(module_state & STATE_STA_RC)
+                    stop_reconnect = 1;
                 res = rda59xx_sniffer_disable_internal();
                 rda_sem_release((r_void *)msg.arg3);
                 module_state &= ~(STATE_SNIFFER);
@@ -413,6 +418,7 @@ static r_void rda59xx_daemon(r_void *arg)
                 break;
             case DAEMON_STA_DISCONNECT:
                 r_memset(&r_sta_info, 0, sizeof(rda59xx_sta_info));
+                r_memset(&r_bss_info, 0, sizeof(rda59xx_bss_info));
                 module_state &= ~(STATE_STA);
                 res = rda59xx_sta_disconnect_internal();
                 rda_sem_release((r_void *)msg.arg3);
@@ -420,11 +426,24 @@ static r_void rda59xx_daemon(r_void *arg)
             case DAEMON_STA_RECONNECT:
                 res = rda59xx_sta_disconnect_internal();
                 r_memset(&r_bss_info, 0, sizeof(rda59xx_bss_info));
+                r_memset(&r_sta_info, 0, sizeof(rda59xx_sta_info));
+                #if 0
+                if(stop_reconnect == 1){
+                    stop_reconnect = 0;
+                    module_state &= ~(STATE_STA_RC);
+                    r_memset(&r_sta_info, 0, sizeof(rda59xx_sta_info));
+                    break;
+                }
+                module_state |= STATE_STA_RC;
+                
                 res = rda59xx_sta_connect_internal(&r_sta_info);
                 if(res != R_NOERR){
                     msg.type = DAEMON_STA_RECONNECT;
                     res = rda_queue_send(daemon_queue, (r_u32)&msg, 1000);
+                }else{
+                    module_state &= ~(STATE_STA_RC);
                 }
+                #endif
                 break;
             case DAEMON_AP_ENABLE:
                 res = rda59xx_ap_enable_internal((rda59xx_ap_info*)msg.arg1);
@@ -459,6 +478,7 @@ r_s32 rda59xx_wifi_init()
     rda_thread_new("daemon_thread", rda59xx_daemon, NULL, 512*5, AOS_DEFAULT_APP_PRI);
     rda_msleep(100);//wait for maclib_task running
     wland_sta_init();
+    rda59xx_filter_multicast(0);
     rda59xx_set_channel(6);
     init_flag = 1;
     return R_NOERR;

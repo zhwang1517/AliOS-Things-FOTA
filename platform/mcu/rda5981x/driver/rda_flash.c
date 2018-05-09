@@ -114,7 +114,6 @@ int rda5981_write_flash(r_u32 addr, char *buf, r_u32 len)
     int ret = 0;
     r_u8 *temp_buf = NULL, *temp_buf_aligned;
     r_u8 *check_buf = NULL;
-    printf("rda5981_write_flash addr %x len %d\r\n", addr, len);
     addr &= (flash_size -1);
     if (addr < RDA5991H_PARTITION_TABLE_END_ADDR-0x18000000) {
         printf( "couldn't write system data\n");
@@ -161,7 +160,6 @@ out:
 int rda5981_set_flash_size(const r_u32 size)
 {
 
-    printf( "Enter set flash size: %x\r\n", size);
     if (size == 0x100000 ||
         size == 0x200000 ||
         size == 0x400000) {

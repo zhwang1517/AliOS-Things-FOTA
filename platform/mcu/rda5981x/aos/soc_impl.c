@@ -66,7 +66,7 @@ extern int __bss_start__, __bss_end__, __data_start__, __data_end__;
 void aos_mm_leak_region_init(void)
 {
     //printf("heap_start = 0x%x, heap_len = 0x%x\n", (size_t)&heap_start, (size_t)&heap_len);
-    krhino_add_mm_region(g_kmm_head, heap_start, heap_end - heap_start);
+    //krhino_add_mm_region(g_kmm_head, heap_start, heap_end - heap_start);
 #if (RHINO_CONFIG_MM_DEBUG > 0)
     krhino_mm_leak_region_init(&__bss_start__, &__bss_end__);
     krhino_mm_leak_region_init(&__data_start__, &__data_end__);

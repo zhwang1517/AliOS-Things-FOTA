@@ -72,9 +72,10 @@ $(NAME)_SOURCES := startup/startup_rda5981x.s \
                    hal/uart.c \
                    hal/gpio.c \
                    hal/spi.c \
-				   hal/flash.c \
+                   hal/flash.c \
                    hal/rda_trng_api.c \
-				   hal/wifi_port.c
+                   hal/wifi_port.c \
+                   hal/ota_port.c
 
 $(NAME)_SOURCES += cmsis/cmsis_nvic.c \
                    driver/serial_api.c \

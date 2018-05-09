@@ -194,11 +194,9 @@ static int get_ip_stat(hal_wifi_module_t *m,
                        hal_wifi_ip_stat_t *out_net_para,
                        hal_wifi_type_t wifi_type)
 {
-    printf("get_ip_stat\r\n");
     rda59xx_bss_info bss_info;
     unsigned int state = 0;
     state = rda59xx_get_module_state();
-    printf("get_ip_stat state %d\r\n", state);
     if ((wifi_type == HAL_WIFI_MODE_STATION) && (state & STATE_STA)){
         rda59xx_sta_get_bss_info(&bss_info);
         ip4addr_aton(out_net_para->ip, &(bss_info.ipaddr));
@@ -207,7 +205,6 @@ static int get_ip_stat(hal_wifi_module_t *m,
         ip4addr_aton(out_net_para->dns, &(bss_info.dns1));
         snprintf(out_net_para->mac, 12, "%02x%02x%02x%02x%02x%02x",
                 bss_info.bssid[0], bss_info.bssid[1], bss_info.bssid[2], bss_info.bssid[3], bss_info.bssid[4], bss_info.bssid[5]);
-        printf("ip %s mask %s gate %s dns %s mac\r\n", out_net_para->ip, out_net_para->mask, out_net_para->gate, out_net_para->dns, out_net_para->mac);
     }
     return 0;
 }
@@ -233,7 +230,7 @@ static int get_link_stat(hal_wifi_module_t *m,
 static void wifi_scan(hal_wifi_module_t *m)
 {
     rda59xx_scan_info scan_info;
-    memset(&scan_info, 0, sizeof(hal_wifi_module_t));
+    memset(&scan_info, 0, sizeof(rda59xx_scan_info));
     rda59xx_scan(&scan_info);
     scan_done(m, SCAN_NORMAL);;
 }
@@ -241,7 +238,7 @@ static void wifi_scan(hal_wifi_module_t *m)
 static void start_scan_adv(hal_wifi_module_t *m)
 {
     rda59xx_scan_info scan_info;
-    memset(&scan_info, 0, sizeof(hal_wifi_module_t));
+    memset(&scan_info, 0, sizeof(rda59xx_scan_info));
     rda59xx_scan(&scan_info);
     scan_done(m, SCAN_ADV);
 }
