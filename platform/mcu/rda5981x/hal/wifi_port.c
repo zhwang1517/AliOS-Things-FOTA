@@ -293,7 +293,7 @@ static int get_channel(hal_wifi_module_t *m)
 static void start_monitor(hal_wifi_module_t *m)
 {
     rda59xx_sniffer_enable((sniffer_handler_t)data_cb);
-    rda59xx_sniffer_set_filter(1, 1, 0x3fe77);
+    rda59xx_sniffer_set_filter(1, 1, 0x27e77);
 }
 
 static void stop_monitor(hal_wifi_module_t *m)
