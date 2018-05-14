@@ -14,6 +14,3 @@ endif
 
 
 $(NAME)_INCLUDES += ./libywss/os/  ./libywss/os/platform/ 
-$(NAME)_SOURCES +=  hal/HAL_AWSS_rhino.c
-
-
