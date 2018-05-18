@@ -274,7 +274,11 @@ static int suspend_soft_ap(hal_wifi_module_t *m)
 
 static int set_channel(hal_wifi_module_t *m, int ch)
 {
-    rda59xx_set_channel(ch);
+    //unsigned int mode = rda59xx_get_module_state();
+    //if(mode & STATE_SNIFFER)
+    //    rda59xx_sniffer_set_channel();
+    //else
+        rda59xx_set_channel(ch);
     return 0;
 }
 
@@ -290,9 +294,35 @@ static int get_channel(hal_wifi_module_t *m)
     return 0;
 }
 
+static void dump_frame(const char* msg, unsigned char *data, unsigned int frame_len)
+{
+    unsigned int len,i;
+
+    if(frame_len != 0)
+        len = frame_len;
+    else
+        len = data[0] | ((data[1]&0x0f) << 8);
+    printf("%s : ",msg);
+    for(i=0; i<len; i++)
+        printf("%02x ", *(data+i));
+    printf("\r\nframe_len=%d\r\n", len);    
+    return;
+}
+
+
+static int sniffer_cb(void *data, unsigned short data_len)
+{
+    //dump_frame("sniffer_cb", (unsigned char*)data, data_len);
+    if(data_cb != NULL)
+        (*data_cb)((uint8_t*)data, (int)data_len, NULL);
+    return 0;
+}
+
+
 static void start_monitor(hal_wifi_module_t *m)
 {
-    rda59xx_sniffer_enable((sniffer_handler_t)data_cb);
+    rda59xx_sta_disconnect();
+    rda59xx_sniffer_enable(sniffer_cb);
     rda59xx_sniffer_set_filter(1, 1, 0x27e77);
 }
 
@@ -309,11 +339,9 @@ static void register_monitor_cb(hal_wifi_module_t *m, monitor_data_cb_t fn)
 static void register_wlan_mgnt_monitor_cb(hal_wifi_module_t *m,
                                           monitor_data_cb_t fn)
 {
-    //mngt_data_cb = fn;
-    // Workaround for zero config <TODO>
-    //hal_wifi_register_monitor_cb(NULL, NULL);
-    //hal_wifi_start_wifi_monitor(NULL);
-    printf("WiFi HAL %s not implemeted yet!\r\n", __func__);
+    data_cb = fn;
+    rda59xx_sniffer_enable(sniffer_cb);
+    rda59xx_sniffer_set_filter(1, 1, 0x7fe77);
     return 0;
 }
 
