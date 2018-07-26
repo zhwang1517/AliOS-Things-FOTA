@@ -18,11 +18,24 @@ GLOBAL_DEFINES += CONFIG_AOS_KV_SECOND_PTN=7
 GLOBAL_DEFINES += CONFIG_AOS_KV_PTN_SIZE=4096
 GLOBAL_DEFINES += CONFIG_AOS_KV_BUFFER_SIZE=8192
 
-GLOBAL_INCLUDES += ../../../arch/arm/armv6m/gcc/m0plus
+
 GLOBAL_INCLUDES += include \
                    startup    \
                    driver
 
+ifeq ($(COMPILER),armcc)
+GLOBAL_INCLUDES += ../../../../utility/libc/compilers/armlibc
+GLOBAL_CFLAGS   += --c99 --cpu=7E-M -D__MICROLIB -g --apcs=interwork --split_sections
+GLOBAL_ASMFLAGS += --cpu=7E-M -g --apcs=interwork --library_type=microlib --pd "__MICROLIB SETA 1"
+GLOBAL_LDFLAGS += -L --cpu=7E-M   \
+                  -L --strict \
+                  -L --xref -L --callgraph -L --symbols \
+                  -L --info=sizes -L --info=totals -L --info=unused -L --info=veneers -L --info=summarysizes
+GLOBAL_LDFLAGS += -L --scatter=platform/mcu/stm32l0xx/stm32l071kb/STM32L071KBUx_FLASH.sct
+$(NAME)_SOURCES :=../src/STM32L071KB/startup_stm32l071xx_armcc.s
+$(NAME)_LINK_FILES := ../src/STM32L071KB/startup_stm32l071xx_armcc.o  
+  
+else
 GLOBAL_CFLAGS += -mcpu=cortex-m0plus \
                  -march=armv6-m \
                  -mthumb -mthumb-interwork \
@@ -36,11 +49,19 @@ GLOBAL_LDFLAGS += -mcpu=cortex-m0plus        \
                   -nostartfiles \
                   --specs=nosys.specs \
                   $(CLIB_LDFLAGS_NANO_FLOAT)
-
+                  
 $(NAME)_CFLAGS  += -Wall -Werror -Wno-unused-variable -Wno-unused-parameter -Wno-implicit-function-declaration
 $(NAME)_CFLAGS  += -Wno-type-limits -Wno-sign-compare -Wno-pointer-sign -Wno-uninitialized
 $(NAME)_CFLAGS  += -Wno-return-type -Wno-unused-function -Wno-unused-but-set-variable
 $(NAME)_CFLAGS  += -Wno-unused-value -Wno-strict-aliasing
+
+GLOBAL_LDFLAGS += -T platform/mcu/stm32l0xx/stm32l071kb/STM32L071KBUx_FLASH.ld
+
+$(NAME)_SOURCES :=../src/STM32L071KB/startup_stm32l071xx_gcc.s
+endif
+
+
+
 
 $(NAME)_INCLUDES := \
 ../src/STM32L071KB/runapp \
@@ -49,11 +70,10 @@ $(NAME)_INCLUDES := \
 ../Drivers/CMSIS/Device/ST/STM32L0xx/Include \
 ../Drivers/CMSIS/Include
 
-$(NAME)_SOURCES := \
+$(NAME)_SOURCES += \
 ../aos/soc_impl.c \
 ../hal/flash.c \
 ../src/STM32L071KB/runapp/main.c \
-../src/STM32L071KB/startup_stm32l071xx_gcc.s \
 ../src/STM32L071KB/runapp/stm32l0xx_hal_msp.c \
 ../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c \
 ../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c \
@@ -85,4 +105,3 @@ $(NAME)_DEFINES := \
 USE_HAL_DRIVER \
 STM32L071xx
 
-GLOBAL_LDFLAGS += -T platform/mcu/stm32l0xx/stm32l071kb/STM32L071KBUx_FLASH.ld
