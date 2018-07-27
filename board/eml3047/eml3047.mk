@@ -14,12 +14,15 @@ $(NAME)_SOURCES := board.c                 \
 				   src/hw_spi.c            \
 				   src/hw_rtc.c            \
 				   src/eml3047_hw.c        \
-				   src/eml3047_it.c        \
-				   src/vcom.c              \
 				   src/lorawan_port.c      \
-                         ../../device/lora/eml3047_lrwan/eml3047.c    \
--                        ../../device/lora/sx1276/sx1276.c
+                   ../../device/lora/eml3047_lrwan/eml3047.c    \
+                   ../../device/lora/sx1276/sx1276.c
 
+ifneq ($(IDE),keil)
+$(NAME)_SOURCES += src/vcom.c  \
+                   src/eml3047_it.c
+endif                         
+                        
 $(NAME)_COMPONENTS += modules.fs.kv
 
 linkwan ?= 0
@@ -41,7 +44,7 @@ USE_HAL_DRIVER \
 STM32L071xx
 
 GLOBAL_INCLUDES +=  ../../device/lora/eml3047_lrwan    \
-                    ../../device/lora/sx1276   \
+                    ../../device/lora/sx1276
 
 GLOBAL_DEFINES += STDIO_UART=0 CONFIG_NO_TCPIP
 GLOBAL_DEFINES += RHINO_CONFIG_TICK_TASK=0 RHINO_CONFIG_WORKQUEUE=0
