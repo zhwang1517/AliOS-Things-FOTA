@@ -25,9 +25,9 @@ GLOBAL_INCLUDES += include \
 
 ifeq ($(COMPILER),armcc)
 GLOBAL_INCLUDES += ../../../../utility/libc/compilers/armlibc
-GLOBAL_CFLAGS   += --c99 --cpu=7E-M -D__MICROLIB -g --apcs=interwork --split_sections
-GLOBAL_ASMFLAGS += --cpu=7E-M -g --apcs=interwork --library_type=microlib --pd "__MICROLIB SETA 1"
-GLOBAL_LDFLAGS += -L --cpu=7E-M   \
+GLOBAL_CFLAGS   += --c99 --cpu=Cortex-M0+ -D__MICROLIB -g --apcs=interwork --split_sections
+GLOBAL_ASMFLAGS += --cpu=Cortex-M0+ -g --apcs=interwork --library_type=microlib --pd "__MICROLIB SETA 1"
+GLOBAL_LDFLAGS += -L --cpu=Cortex-M0+   \
                   -L --strict \
                   -L --xref -L --callgraph -L --symbols \
                   -L --info=sizes -L --info=totals -L --info=unused -L --info=veneers -L --info=summarysizes

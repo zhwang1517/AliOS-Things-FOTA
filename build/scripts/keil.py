@@ -48,9 +48,11 @@ def add_group(parent, name, files, project_path):
 def changeItemForMcu( tree ):
     ScatterFile = tree.find('Targets/Target/TargetOption/TargetArmAds/LDads/ScatterFile')
     if 'starterkit' in buildstring:
-        ScatterFile.text = '..\..\..\..\platform\mcu\stm32l4xx\src\STM32L433RC-Nucleo\STM32L433.sct'
+        ScatterFile.text = '../../../../platform/mcu/stm32l4xx/src/STM32L433RC-Nucleo/STM32L433.sct'
     if 'stm32l432' in buildstring:
-        ScatterFile.text = '..\..\..\..\platform\mcu\stm32l4xx\src\STM32L432KC-Nucleo\STM32L432.sct'
+        ScatterFile.text = '../../../../platform/mcu/stm32l4xx/src/STM32L432KC-Nucleo/STM32L432.sct'
+    if 'eml3047' in buildstring:
+        ScatterFile.text = '../../../../platform/mcu/stm32l0xx/stm32l071kb/STM32L071KBUx_FLASH.sct'    
     
 # change key word in project file. automation to do
 def ModifyProjString( projString ):
@@ -58,6 +60,8 @@ def ModifyProjString( projString ):
         projString = projString.replace('STM32L475VGTx','STM32L433RCTx')
     if 'stm32l432' in buildstring:
         projString = projString.replace('STM32L475VGTx','STM32L432KCTx')
+    if 'eml3047' in buildstring:
+        projString = projString.replace('STM32L475VGTx','STM32L071KBUx')
     return  projString   
     
 def gen_project(tree, target, script):
