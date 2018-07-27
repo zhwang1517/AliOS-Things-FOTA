@@ -12,6 +12,12 @@
 #define HEAP_BUFFER_SIZE 1024*10
 uint8_t g_heap_buf[HEAP_BUFFER_SIZE];
 k_mm_region_t g_mm_region[] = {{g_heap_buf, HEAP_BUFFER_SIZE}};
+
+//temply slove link problem
+void __aeabi_assert(const char *expr, const char *file, int line)
+{
+    while (1);
+}
 #elif defined (__ICCARM__)/* IAR */
 #define HEAP_BUFFER_SIZE 1024*10
 uint8_t g_heap_buf[HEAP_BUFFER_SIZE];

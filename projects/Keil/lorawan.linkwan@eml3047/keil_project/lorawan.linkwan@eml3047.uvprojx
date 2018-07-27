@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="project_projx.xsd">
+
   <SchemaVersion>2.1</SchemaVersion>
+
   <Header>### uVision Project, (C) Keil Software</Header>
+
   <Targets>
     <Target>
       <TargetName>lorawan.linkwan@eml3047</TargetName>
@@ -10,33 +13,33 @@
       <pCCUsed>5060300::V5.06 update 3 (build 300)::ARMCC</pCCUsed>
       <TargetOption>
         <TargetCommonOption>
-          <Device>STM32L475VGTx</Device>
+          <Device>STM32L071KBUx</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32L4xx_DFP.2.0.0</PackID>
-          <PackURL>http://www.keil.com/pack</PackURL>
-          <Cpu>IRAM(0x20000000,0x00018000) IRAM2(0x10000000,0x00008000) IROM(0x08000000,0x00100000) CPUTYPE("Cortex-M4") FPU2 CLOCK(12000000) ELITTLE</Cpu>
-          <FlashUtilSpec />
-          <StartupFile />
-          <FlashDriverDll>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000 -FN1 -FF0STM32L4xx_1024 -FS08000000 -FL0100000 -FP0($$Device:STM32L475VGTx$CMSIS\Flash\STM32L4xx_1024.FLM))</FlashDriverDll>
+          <PackID>Keil.STM32L0xx_DFP.1.6.1</PackID>
+          <PackURL>http://www.keil.com/pack/</PackURL>
+          <Cpu>IRAM(0x20000000,0x00005000) IROM(0x08000000,0x00020000) CPUTYPE("Cortex-M0+") CLOCK(12000000) ELITTLE</Cpu>
+          <FlashUtilSpec></FlashUtilSpec>
+          <StartupFile></StartupFile>
+          <FlashDriverDll>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000 -FN1 -FF0STM32L0xx_128 -FS08000000 -FL020000 -FP0($$Device:STM32L071KBUx$Flash\STM32L0xx_128.FLM))</FlashDriverDll>
           <DeviceId>0</DeviceId>
-          <RegisterFile>$$Device:STM32L475VGTx$Drivers\CMSIS\Device\ST\STM32L4xx\Include\stm32l4xx.h</RegisterFile>
-          <MemoryEnv />
-          <Cmp />
-          <Asm />
-          <Linker />
-          <OHString />
-          <InfinionOptionDll />
-          <SLE66CMisc />
-          <SLE66AMisc />
-          <SLE66LinkerMisc />
-          <SFDFile>$$Device:STM32L475VGTx$CMSIS\SVD\STM32L4x5.svd</SFDFile>
+          <RegisterFile>$$Device:STM32L071KBUx$Device\Include\stm32l0xx.h</RegisterFile>
+          <MemoryEnv></MemoryEnv>
+          <Cmp></Cmp>
+          <Asm></Asm>
+          <Linker></Linker>
+          <OHString></OHString>
+          <InfinionOptionDll></InfinionOptionDll>
+          <SLE66CMisc></SLE66CMisc>
+          <SLE66AMisc></SLE66AMisc>
+          <SLE66LinkerMisc></SLE66LinkerMisc>
+          <SFDFile>$$Device:STM32L071KBUx$SVD\STM32L0x1.svd</SFDFile>
           <bCustSvd>0</bCustSvd>
           <UseEnv>0</UseEnv>
-          <BinPath />
-          <IncludePath />
-          <LibPath />
-          <RegisterFilePath />
-          <DBRegisterFilePath />
+          <BinPath></BinPath>
+          <IncludePath></IncludePath>
+          <LibPath></LibPath>
+          <RegisterFilePath></RegisterFilePath>
+          <DBRegisterFilePath></DBRegisterFilePath>
           <TargetStatus>
             <Error>0</Error>
             <ExitCodeStop>0</ExitCodeStop>
@@ -58,8 +61,8 @@
           <BeforeCompile>
             <RunUserProg1>0</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name />
-            <UserProg2Name />
+            <UserProg1Name></UserProg1Name>
+            <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
             <nStopU1X>0</nStopU1X>
@@ -68,8 +71,8 @@
           <BeforeMake>
             <RunUserProg1>0</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name />
-            <UserProg2Name />
+            <UserProg1Name></UserProg1Name>
+            <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
             <nStopB1X>0</nStopB1X>
@@ -79,14 +82,14 @@
             <RunUserProg1>0</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
             <UserProg1Name>fromelf.exe --bin -o "$L@L.bin" "#L"</UserProg1Name>
-            <UserProg2Name />
+            <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
             <nStopA1X>0</nStopA1X>
             <nStopA2X>0</nStopA2X>
           </AfterMake>
           <SelectedForBatchBuild>0</SelectedForBatchBuild>
-          <SVCSIdString />
+          <SVCSIdString></SVCSIdString>
         </TargetCommonOption>
         <CommonProperty>
           <UseCPPCompiler>0</UseCPPCompiler>
@@ -100,19 +103,19 @@
           <AssembleAssemblyFile>0</AssembleAssemblyFile>
           <PublicsOnly>0</PublicsOnly>
           <StopOnExitCode>3</StopOnExitCode>
-          <CustomArgument />
-          <IncludeLibraryModules />
+          <CustomArgument></CustomArgument>
+          <IncludeLibraryModules></IncludeLibraryModules>
           <ComprImg>1</ComprImg>
         </CommonProperty>
         <DllOption>
           <SimDllName>SARMCM3.DLL</SimDllName>
-          <SimDllArguments> -REMAP -MPU</SimDllArguments>
-          <SimDlgDll>DCM.DLL</SimDlgDll>
-          <SimDlgDllArguments>-pCM4</SimDlgDllArguments>
+          <SimDllArguments> -REMAP </SimDllArguments>
+          <SimDlgDll>DARMCM1.DLL</SimDlgDll>
+          <SimDlgDllArguments>-pCM0+</SimDlgDllArguments>
           <TargetDllName>SARMCM3.DLL</TargetDllName>
-          <TargetDllArguments> -MPU</TargetDllArguments>
-          <TargetDlgDll>TCM.DLL</TargetDlgDll>
-          <TargetDlgDllArguments>-pCM4</TargetDlgDllArguments>
+          <TargetDllArguments> </TargetDllArguments>
+          <TargetDlgDll>TARMCM1.DLL</TargetDlgDll>
+          <TargetDlgDllArguments>-pCM0+</TargetDlgDllArguments>
         </DllOption>
         <DebugOption>
           <OPTHX>
@@ -134,11 +137,11 @@
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3>"" ()</Flash3>
-          <Flash4 />
-          <pFcarmOut />
-          <pFcarmGrp />
-          <pFcArmRoot />
+          <Flash3></Flash3>
+          <Flash4></Flash4>
+          <pFcarmOut></pFcarmOut>
+          <pFcarmGrp></pFcarmGrp>
+          <pFcArmRoot></pFcArmRoot>
           <FcArmLst>0</FcArmLst>
         </Utilities>
         <TargetArmAds>
@@ -170,8 +173,8 @@
             <AdsLsxf>1</AdsLsxf>
             <RvctClst>0</RvctClst>
             <GenPPlst>0</GenPPlst>
-            <AdsCpuType>"Cortex-M4"</AdsCpuType>
-            <RvctDeviceName />
+            <AdsCpuType>"Cortex-M0+"</AdsCpuType>
+            <RvctDeviceName></RvctDeviceName>
             <mOS>0</mOS>
             <uocRom>0</uocRom>
             <uocRam>0</uocRam>
@@ -179,8 +182,8 @@
             <hadIRAM>1</hadIRAM>
             <hadXRAM>0</hadXRAM>
             <uocXRam>0</uocXRam>
-            <RvdsVP>2</RvdsVP>
-            <hadIRAM2>1</hadIRAM2>
+            <RvdsVP>0</RvdsVP>
+            <hadIRAM2>0</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
             <useUlib>1</useUlib>
@@ -188,7 +191,7 @@
             <uLtcg>0</uLtcg>
             <nSecure>0</nSecure>
             <RoSelD>3</RoSelD>
-            <RwSelD>4</RwSelD>
+            <RwSelD>3</RwSelD>
             <CodeSel>0</CodeSel>
             <OptFeed>0</OptFeed>
             <NoZi1>0</NoZi1>
@@ -240,12 +243,12 @@
               <IRAM>
                 <Type>0</Type>
                 <StartAddress>0x20000000</StartAddress>
-                <Size>0x18000</Size>
+                <Size>0x5000</Size>
               </IRAM>
               <IROM>
                 <Type>1</Type>
                 <StartAddress>0x8000000</StartAddress>
-                <Size>0x100000</Size>
+                <Size>0x20000</Size>
               </IROM>
               <XRAM>
                 <Type>0</Type>
@@ -270,7 +273,7 @@
               <OCR_RVCT4>
                 <Type>1</Type>
                 <StartAddress>0x8000000</StartAddress>
-                <Size>0x100000</Size>
+                <Size>0x20000</Size>
               </OCR_RVCT4>
               <OCR_RVCT5>
                 <Type>1</Type>
@@ -295,15 +298,15 @@
               <OCR_RVCT9>
                 <Type>0</Type>
                 <StartAddress>0x20000000</StartAddress>
-                <Size>0x18000</Size>
+                <Size>0x5000</Size>
               </OCR_RVCT9>
               <OCR_RVCT10>
                 <Type>0</Type>
-                <StartAddress>0x10000000</StartAddress>
-                <Size>0x8000</Size>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
               </OCR_RVCT10>
             </OnChipMemories>
-            <RvctStartVector />
+            <RvctStartVector></RvctStartVector>
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
@@ -328,7 +331,11 @@
             <v6Lto>0</v6Lto>
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
-            <VariousControls>              
+            <VariousControls>
+              <MiscControls></MiscControls>
+              <Define></Define>
+              <Undefine></Undefine>
+              <IncludePath></IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -343,10 +350,10 @@
             <useXO>0</useXO>
             <uClangAs>0</uClangAs>
             <VariousControls>
-              <MiscControls />
-              <Define />
-              <Undefine />
-              <IncludePath />
+              <MiscControls></MiscControls>
+              <Define></Define>
+              <Undefine></Undefine>
+              <IncludePath></IncludePath>
             </VariousControls>
           </Aads>
           <LDads>
@@ -358,137 +365,206 @@
             <useFile>0</useFile>
             <TextAddressRange>0x08000000</TextAddressRange>
             <DataAddressRange>0x20000000</DataAddressRange>
-            <pXoBase />
+            <pXoBase></pXoBase>
             <ScatterFile>..\..\..\..\platform\mcu\stm32l475\B-L475E-IOT01.sct</ScatterFile>
-            <IncludeLibs />
-            <IncludeLibsPath />
-            <Misc />
-            <LinkerInputFile />
-            <DisabledWarnings />
+            <IncludeLibs></IncludeLibs>
+            <IncludeLibsPath></IncludeLibsPath>
+            <Misc></Misc>
+            <LinkerInputFile></LinkerInputFile>
+            <DisabledWarnings></DisabledWarnings>
           </LDads>
         </TargetArmAds>
       </TargetOption>
       <Groups>
         <Group>
           <GroupName>board_eml3047</GroupName>
+          <GroupOption>
+            <CommonProperty>
+              <UseCPPCompiler>0</UseCPPCompiler>
+              <RVCTCodeConst>0</RVCTCodeConst>
+              <RVCTZI>0</RVCTZI>
+              <RVCTOtherData>0</RVCTOtherData>
+              <ModuleSelection>0</ModuleSelection>
+              <IncludeInBuild>1</IncludeInBuild>
+              <AlwaysBuild>0</AlwaysBuild>
+              <GenerateAssemblyFile>0</GenerateAssemblyFile>
+              <AssembleAssemblyFile>0</AssembleAssemblyFile>
+              <PublicsOnly>0</PublicsOnly>
+              <StopOnExitCode>3</StopOnExitCode>
+              <CustomArgument></CustomArgument>
+              <IncludeLibraryModules></IncludeLibraryModules>
+              <ComprImg>0</ComprImg>
+            </CommonProperty>
+            <GroupArmAds>
+              <Cads>
+                <interw>2</interw>
+                <Optim>0</Optim>
+                <oTime>2</oTime>
+                <SplitLS>2</SplitLS>
+                <OneElfS>2</OneElfS>
+                <Strict>2</Strict>
+                <EnumInt>2</EnumInt>
+                <PlainCh>2</PlainCh>
+                <Ropi>2</Ropi>
+                <Rwpi>2</Rwpi>
+                <wLevel>0</wLevel>
+                <uThumb>2</uThumb>
+                <uSurpInc>2</uSurpInc>
+                <uC99>2</uC99>
+                <useXO>2</useXO>
+                <v6Lang>0</v6Lang>
+                <v6LangP>0</v6LangP>
+                <vShortEn>2</vShortEn>
+                <vShortWch>2</vShortWch>
+                <v6Lto>0</v6Lto>
+                <v6WtE>0</v6WtE>
+                <v6Rtti>2</v6Rtti>
+                <VariousControls>
+                  <MiscControls>--via opts/board_eml3047.c_opts</MiscControls>
+                  <Define></Define>
+                  <Undefine></Undefine>
+                  <IncludePath></IncludePath>
+                </VariousControls>
+              </Cads>
+              <Aads>
+                <interw>2</interw>
+                <Ropi>2</Ropi>
+                <Rwpi>2</Rwpi>
+                <thumb>2</thumb>
+                <SplitLS>2</SplitLS>
+                <SwStkChk>2</SwStkChk>
+                <NoWarn>2</NoWarn>
+                <uSurpInc>2</uSurpInc>
+                <useXO>2</useXO>
+                <uClangAs>2</uClangAs>
+                <VariousControls>
+                  <MiscControls>--via opts/board_eml3047.as_opts</MiscControls>
+                  <Define></Define>
+                  <Undefine></Undefine>
+                  <IncludePath></IncludePath>
+                </VariousControls>
+              </Aads>
+            </GroupArmAds>
+          </GroupOption>
           <Files>
             <File>
               <FileName>-</FileName>
               <FileType>5</FileType>
               <FilePath>../../../.././board/eml3047/-</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>eml3047.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././board/eml3047/../../device/lora/eml3047_lrwan/eml3047.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>sx1276.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././board/eml3047/../../device/lora/sx1276/sx1276.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>board.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././board/eml3047/board.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>debug.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././board/eml3047/src/debug.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>eml3047_hw.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././board/eml3047/src/eml3047_hw.c</FilePath>
             </File>
-          </Files>
-          <Files>
-            <File>
-              <FileName>eml3047_it.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../.././board/eml3047/src/eml3047_it.c</FilePath>
-            </File>
-          </Files>
-          <Files>
             <File>
               <FileName>hw_gpio.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././board/eml3047/src/hw_gpio.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>hw_rtc.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././board/eml3047/src/hw_rtc.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>hw_spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././board/eml3047/src/hw_spi.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>lorawan_port.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././board/eml3047/src/lorawan_port.c</FilePath>
             </File>
           </Files>
-          <Files>
-            <File>
-              <FileName>vcom.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../.././board/eml3047/src/vcom.c</FilePath>
-            </File>
-          </Files>
-          <GroupOption>
-            <GroupArmAds>
-              <Cads>
-                <VariousControls>
-                  <MiscControls>--via opts/board_eml3047.c_opts</MiscControls>
-                </VariousControls>
-              </Cads>
-              <Aads>
-                <VariousControls>
-                  <MiscControls>--via opts/board_eml3047.as_opts</MiscControls>
-                </VariousControls>
-              </Aads>
-            </GroupArmAds>
-          </GroupOption>
         </Group>
         <Group>
           <GroupName>kernel_init</GroupName>
-          <Files>
-            <File>
-              <FileName>aos_init.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../.././kernel/init/aos_init.c</FilePath>
-            </File>
-          </Files>
           <GroupOption>
+            <CommonProperty>
+              <UseCPPCompiler>0</UseCPPCompiler>
+              <RVCTCodeConst>0</RVCTCodeConst>
+              <RVCTZI>0</RVCTZI>
+              <RVCTOtherData>0</RVCTOtherData>
+              <ModuleSelection>0</ModuleSelection>
+              <IncludeInBuild>1</IncludeInBuild>
+              <AlwaysBuild>0</AlwaysBuild>
+              <GenerateAssemblyFile>0</GenerateAssemblyFile>
+              <AssembleAssemblyFile>0</AssembleAssemblyFile>
+              <PublicsOnly>0</PublicsOnly>
+              <StopOnExitCode>3</StopOnExitCode>
+              <CustomArgument></CustomArgument>
+              <IncludeLibraryModules></IncludeLibraryModules>
+              <ComprImg>0</ComprImg>
+            </CommonProperty>
             <GroupArmAds>
               <Cads>
+                <interw>2</interw>
+                <Optim>0</Optim>
+                <oTime>2</oTime>
+                <SplitLS>2</SplitLS>
+                <OneElfS>2</OneElfS>
+                <Strict>2</Strict>
+                <EnumInt>2</EnumInt>
+                <PlainCh>2</PlainCh>
+                <Ropi>2</Ropi>
+                <Rwpi>2</Rwpi>
+                <wLevel>0</wLevel>
+                <uThumb>2</uThumb>
+                <uSurpInc>2</uSurpInc>
+                <uC99>2</uC99>
+                <useXO>2</useXO>
+                <v6Lang>0</v6Lang>
+                <v6LangP>0</v6LangP>
+                <vShortEn>2</vShortEn>
+                <vShortWch>2</vShortWch>
+                <v6Lto>0</v6Lto>
+                <v6WtE>0</v6WtE>
+                <v6Rtti>2</v6Rtti>
                 <VariousControls>
                   <MiscControls>--via opts/kernel_init.c_opts</MiscControls>
+                  <Define></Define>
+                  <Undefine></Undefine>
+                  <IncludePath></IncludePath>
                 </VariousControls>
               </Cads>
               <Aads>
+                <interw>2</interw>
+                <Ropi>2</Ropi>
+                <Rwpi>2</Rwpi>
+                <thumb>2</thumb>
+                <SplitLS>2</SplitLS>
+                <SwStkChk>2</SwStkChk>
+                <NoWarn>2</NoWarn>
+                <uSurpInc>2</uSurpInc>
+                <useXO>2</useXO>
+                <uClangAs>2</uClangAs>
                 <VariousControls>
                   <MiscControls>--via opts/kernel_init.as_opts</MiscControls>
+                  <Define></Define>
+                  <Undefine></Undefine>
+                  <IncludePath></IncludePath>
                 </VariousControls>
               </Aads>
             </GroupArmAds>
@@ -496,6 +572,74 @@
         </Group>
         <Group>
           <GroupName>log</GroupName>
+          <GroupOption>
+            <CommonProperty>
+              <UseCPPCompiler>0</UseCPPCompiler>
+              <RVCTCodeConst>0</RVCTCodeConst>
+              <RVCTZI>0</RVCTZI>
+              <RVCTOtherData>0</RVCTOtherData>
+              <ModuleSelection>0</ModuleSelection>
+              <IncludeInBuild>1</IncludeInBuild>
+              <AlwaysBuild>0</AlwaysBuild>
+              <GenerateAssemblyFile>0</GenerateAssemblyFile>
+              <AssembleAssemblyFile>0</AssembleAssemblyFile>
+              <PublicsOnly>0</PublicsOnly>
+              <StopOnExitCode>3</StopOnExitCode>
+              <CustomArgument></CustomArgument>
+              <IncludeLibraryModules></IncludeLibraryModules>
+              <ComprImg>0</ComprImg>
+            </CommonProperty>
+            <GroupArmAds>
+              <Cads>
+                <interw>2</interw>
+                <Optim>0</Optim>
+                <oTime>2</oTime>
+                <SplitLS>2</SplitLS>
+                <OneElfS>2</OneElfS>
+                <Strict>2</Strict>
+                <EnumInt>2</EnumInt>
+                <PlainCh>2</PlainCh>
+                <Ropi>2</Ropi>
+                <Rwpi>2</Rwpi>
+                <wLevel>0</wLevel>
+                <uThumb>2</uThumb>
+                <uSurpInc>2</uSurpInc>
+                <uC99>2</uC99>
+                <useXO>2</useXO>
+                <v6Lang>0</v6Lang>
+                <v6LangP>0</v6LangP>
+                <vShortEn>2</vShortEn>
+                <vShortWch>2</vShortWch>
+                <v6Lto>0</v6Lto>
+                <v6WtE>0</v6WtE>
+                <v6Rtti>2</v6Rtti>
+                <VariousControls>
+                  <MiscControls>--via opts/log.c_opts</MiscControls>
+                  <Define></Define>
+                  <Undefine></Undefine>
+                  <IncludePath></IncludePath>
+                </VariousControls>
+              </Cads>
+              <Aads>
+                <interw>2</interw>
+                <Ropi>2</Ropi>
+                <Rwpi>2</Rwpi>
+                <thumb>2</thumb>
+                <SplitLS>2</SplitLS>
+                <SwStkChk>2</SwStkChk>
+                <NoWarn>2</NoWarn>
+                <uSurpInc>2</uSurpInc>
+                <useXO>2</useXO>
+                <uClangAs>2</uClangAs>
+                <VariousControls>
+                  <MiscControls>--via opts/log.as_opts</MiscControls>
+                  <Define></Define>
+                  <Undefine></Undefine>
+                  <IncludePath></IncludePath>
+                </VariousControls>
+              </Aads>
+            </GroupArmAds>
+          </GroupOption>
           <Files>
             <File>
               <FileName>log.c</FileName>
@@ -503,23 +647,77 @@
               <FilePath>../../../.././utility/log/log.c</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>linkwan</GroupName>
           <GroupOption>
+            <CommonProperty>
+              <UseCPPCompiler>0</UseCPPCompiler>
+              <RVCTCodeConst>0</RVCTCodeConst>
+              <RVCTZI>0</RVCTZI>
+              <RVCTOtherData>0</RVCTOtherData>
+              <ModuleSelection>0</ModuleSelection>
+              <IncludeInBuild>1</IncludeInBuild>
+              <AlwaysBuild>0</AlwaysBuild>
+              <GenerateAssemblyFile>0</GenerateAssemblyFile>
+              <AssembleAssemblyFile>0</AssembleAssemblyFile>
+              <PublicsOnly>0</PublicsOnly>
+              <StopOnExitCode>3</StopOnExitCode>
+              <CustomArgument></CustomArgument>
+              <IncludeLibraryModules></IncludeLibraryModules>
+              <ComprImg>0</ComprImg>
+            </CommonProperty>
             <GroupArmAds>
               <Cads>
+                <interw>2</interw>
+                <Optim>0</Optim>
+                <oTime>2</oTime>
+                <SplitLS>2</SplitLS>
+                <OneElfS>2</OneElfS>
+                <Strict>2</Strict>
+                <EnumInt>2</EnumInt>
+                <PlainCh>2</PlainCh>
+                <Ropi>2</Ropi>
+                <Rwpi>2</Rwpi>
+                <wLevel>0</wLevel>
+                <uThumb>2</uThumb>
+                <uSurpInc>2</uSurpInc>
+                <uC99>2</uC99>
+                <useXO>2</useXO>
+                <v6Lang>0</v6Lang>
+                <v6LangP>0</v6LangP>
+                <vShortEn>2</vShortEn>
+                <vShortWch>2</vShortWch>
+                <v6Lto>0</v6Lto>
+                <v6WtE>0</v6WtE>
+                <v6Rtti>2</v6Rtti>
                 <VariousControls>
-                  <MiscControls>--via opts/log.c_opts</MiscControls>
+                  <MiscControls>--via opts/linkwan.c_opts</MiscControls>
+                  <Define></Define>
+                  <Undefine></Undefine>
+                  <IncludePath></IncludePath>
                 </VariousControls>
               </Cads>
               <Aads>
+                <interw>2</interw>
+                <Ropi>2</Ropi>
+                <Rwpi>2</Rwpi>
+                <thumb>2</thumb>
+                <SplitLS>2</SplitLS>
+                <SwStkChk>2</SwStkChk>
+                <NoWarn>2</NoWarn>
+                <uSurpInc>2</uSurpInc>
+                <useXO>2</useXO>
+                <uClangAs>2</uClangAs>
                 <VariousControls>
-                  <MiscControls>--via opts/log.as_opts</MiscControls>
+                  <MiscControls>--via opts/linkwan.as_opts</MiscControls>
+                  <Define></Define>
+                  <Undefine></Undefine>
+                  <IncludePath></IncludePath>
                 </VariousControls>
               </Aads>
             </GroupArmAds>
           </GroupOption>
-        </Group>
-        <Group>
-          <GroupName>linkwan</GroupName>
           <Files>
             <File>
               <FileName>linkwan.c</FileName>
@@ -527,23 +725,77 @@
               <FilePath>../../../.././example/lorawan/linkwan/linkwan.c</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>kv</GroupName>
           <GroupOption>
+            <CommonProperty>
+              <UseCPPCompiler>0</UseCPPCompiler>
+              <RVCTCodeConst>0</RVCTCodeConst>
+              <RVCTZI>0</RVCTZI>
+              <RVCTOtherData>0</RVCTOtherData>
+              <ModuleSelection>0</ModuleSelection>
+              <IncludeInBuild>1</IncludeInBuild>
+              <AlwaysBuild>0</AlwaysBuild>
+              <GenerateAssemblyFile>0</GenerateAssemblyFile>
+              <AssembleAssemblyFile>0</AssembleAssemblyFile>
+              <PublicsOnly>0</PublicsOnly>
+              <StopOnExitCode>3</StopOnExitCode>
+              <CustomArgument></CustomArgument>
+              <IncludeLibraryModules></IncludeLibraryModules>
+              <ComprImg>0</ComprImg>
+            </CommonProperty>
             <GroupArmAds>
               <Cads>
+                <interw>2</interw>
+                <Optim>0</Optim>
+                <oTime>2</oTime>
+                <SplitLS>2</SplitLS>
+                <OneElfS>2</OneElfS>
+                <Strict>2</Strict>
+                <EnumInt>2</EnumInt>
+                <PlainCh>2</PlainCh>
+                <Ropi>2</Ropi>
+                <Rwpi>2</Rwpi>
+                <wLevel>0</wLevel>
+                <uThumb>2</uThumb>
+                <uSurpInc>2</uSurpInc>
+                <uC99>2</uC99>
+                <useXO>2</useXO>
+                <v6Lang>0</v6Lang>
+                <v6LangP>0</v6LangP>
+                <vShortEn>2</vShortEn>
+                <vShortWch>2</vShortWch>
+                <v6Lto>0</v6Lto>
+                <v6WtE>0</v6WtE>
+                <v6Rtti>2</v6Rtti>
                 <VariousControls>
-                  <MiscControls>--via opts/linkwan.c_opts</MiscControls>
+                  <MiscControls>--via opts/kv.c_opts</MiscControls>
+                  <Define></Define>
+                  <Undefine></Undefine>
+                  <IncludePath></IncludePath>
                 </VariousControls>
               </Cads>
               <Aads>
+                <interw>2</interw>
+                <Ropi>2</Ropi>
+                <Rwpi>2</Rwpi>
+                <thumb>2</thumb>
+                <SplitLS>2</SplitLS>
+                <SwStkChk>2</SwStkChk>
+                <NoWarn>2</NoWarn>
+                <uSurpInc>2</uSurpInc>
+                <useXO>2</useXO>
+                <uClangAs>2</uClangAs>
                 <VariousControls>
-                  <MiscControls>--via opts/linkwan.as_opts</MiscControls>
+                  <MiscControls>--via opts/kv.as_opts</MiscControls>
+                  <Define></Define>
+                  <Undefine></Undefine>
+                  <IncludePath></IncludePath>
                 </VariousControls>
               </Aads>
             </GroupArmAds>
           </GroupOption>
-        </Group>
-        <Group>
-          <GroupName>kv</GroupName>
           <Files>
             <File>
               <FileName>kvmgr.c</FileName>
@@ -551,574 +803,714 @@
               <FilePath>../../../.././kernel/modules/fs/kv/kvmgr.c</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>armv6m</GroupName>
           <GroupOption>
+            <CommonProperty>
+              <UseCPPCompiler>0</UseCPPCompiler>
+              <RVCTCodeConst>0</RVCTCodeConst>
+              <RVCTZI>0</RVCTZI>
+              <RVCTOtherData>0</RVCTOtherData>
+              <ModuleSelection>0</ModuleSelection>
+              <IncludeInBuild>1</IncludeInBuild>
+              <AlwaysBuild>0</AlwaysBuild>
+              <GenerateAssemblyFile>0</GenerateAssemblyFile>
+              <AssembleAssemblyFile>0</AssembleAssemblyFile>
+              <PublicsOnly>0</PublicsOnly>
+              <StopOnExitCode>3</StopOnExitCode>
+              <CustomArgument></CustomArgument>
+              <IncludeLibraryModules></IncludeLibraryModules>
+              <ComprImg>0</ComprImg>
+            </CommonProperty>
             <GroupArmAds>
               <Cads>
+                <interw>2</interw>
+                <Optim>0</Optim>
+                <oTime>2</oTime>
+                <SplitLS>2</SplitLS>
+                <OneElfS>2</OneElfS>
+                <Strict>2</Strict>
+                <EnumInt>2</EnumInt>
+                <PlainCh>2</PlainCh>
+                <Ropi>2</Ropi>
+                <Rwpi>2</Rwpi>
+                <wLevel>0</wLevel>
+                <uThumb>2</uThumb>
+                <uSurpInc>2</uSurpInc>
+                <uC99>2</uC99>
+                <useXO>2</useXO>
+                <v6Lang>0</v6Lang>
+                <v6LangP>0</v6LangP>
+                <vShortEn>2</vShortEn>
+                <vShortWch>2</vShortWch>
+                <v6Lto>0</v6Lto>
+                <v6WtE>0</v6WtE>
+                <v6Rtti>2</v6Rtti>
                 <VariousControls>
-                  <MiscControls>--via opts/kv.c_opts</MiscControls>
+                  <MiscControls>--via opts/armv6m.c_opts</MiscControls>
+                  <Define></Define>
+                  <Undefine></Undefine>
+                  <IncludePath></IncludePath>
                 </VariousControls>
               </Cads>
               <Aads>
+                <interw>2</interw>
+                <Ropi>2</Ropi>
+                <Rwpi>2</Rwpi>
+                <thumb>2</thumb>
+                <SplitLS>2</SplitLS>
+                <SwStkChk>2</SwStkChk>
+                <NoWarn>2</NoWarn>
+                <uSurpInc>2</uSurpInc>
+                <useXO>2</useXO>
+                <uClangAs>2</uClangAs>
                 <VariousControls>
-                  <MiscControls>--via opts/kv.as_opts</MiscControls>
+                  <MiscControls>--via opts/armv6m.as_opts</MiscControls>
+                  <Define></Define>
+                  <Undefine></Undefine>
+                  <IncludePath></IncludePath>
                 </VariousControls>
               </Aads>
             </GroupArmAds>
           </GroupOption>
-        </Group>
-        <Group>
-          <GroupName>armv6m</GroupName>
           <Files>
             <File>
               <FileName>port_c.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../././platform/arch/arm/armv6m/armcc/m0/port_c.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>port_s.S</FileName>
               <FileType>2</FileType>
               <FilePath>../../../../././platform/arch/arm/armv6m/armcc/m0/port_s.S</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>stm32l071kb</GroupName>
           <GroupOption>
+            <CommonProperty>
+              <UseCPPCompiler>0</UseCPPCompiler>
+              <RVCTCodeConst>0</RVCTCodeConst>
+              <RVCTZI>0</RVCTZI>
+              <RVCTOtherData>0</RVCTOtherData>
+              <ModuleSelection>0</ModuleSelection>
+              <IncludeInBuild>1</IncludeInBuild>
+              <AlwaysBuild>0</AlwaysBuild>
+              <GenerateAssemblyFile>0</GenerateAssemblyFile>
+              <AssembleAssemblyFile>0</AssembleAssemblyFile>
+              <PublicsOnly>0</PublicsOnly>
+              <StopOnExitCode>3</StopOnExitCode>
+              <CustomArgument></CustomArgument>
+              <IncludeLibraryModules></IncludeLibraryModules>
+              <ComprImg>0</ComprImg>
+            </CommonProperty>
             <GroupArmAds>
               <Cads>
+                <interw>2</interw>
+                <Optim>0</Optim>
+                <oTime>2</oTime>
+                <SplitLS>2</SplitLS>
+                <OneElfS>2</OneElfS>
+                <Strict>2</Strict>
+                <EnumInt>2</EnumInt>
+                <PlainCh>2</PlainCh>
+                <Ropi>2</Ropi>
+                <Rwpi>2</Rwpi>
+                <wLevel>0</wLevel>
+                <uThumb>2</uThumb>
+                <uSurpInc>2</uSurpInc>
+                <uC99>2</uC99>
+                <useXO>2</useXO>
+                <v6Lang>0</v6Lang>
+                <v6LangP>0</v6LangP>
+                <vShortEn>2</vShortEn>
+                <vShortWch>2</vShortWch>
+                <v6Lto>0</v6Lto>
+                <v6WtE>0</v6WtE>
+                <v6Rtti>2</v6Rtti>
                 <VariousControls>
-                  <MiscControls>--via opts/armv6m.c_opts</MiscControls>
+                  <MiscControls>--via opts/stm32l071kb.c_opts</MiscControls>
+                  <Define></Define>
+                  <Undefine></Undefine>
+                  <IncludePath></IncludePath>
                 </VariousControls>
               </Cads>
               <Aads>
+                <interw>2</interw>
+                <Ropi>2</Ropi>
+                <Rwpi>2</Rwpi>
+                <thumb>2</thumb>
+                <SplitLS>2</SplitLS>
+                <SwStkChk>2</SwStkChk>
+                <NoWarn>2</NoWarn>
+                <uSurpInc>2</uSurpInc>
+                <useXO>2</useXO>
+                <uClangAs>2</uClangAs>
                 <VariousControls>
-                  <MiscControls>--via opts/armv6m.as_opts</MiscControls>
+                  <MiscControls>--via opts/stm32l071kb.as_opts</MiscControls>
+                  <Define></Define>
+                  <Undefine></Undefine>
+                  <IncludePath></IncludePath>
                 </VariousControls>
               </Aads>
             </GroupArmAds>
           </GroupOption>
-        </Group>
-        <Group>
-          <GroupName>stm32l071kb</GroupName>
           <Files>
             <File>
               <FileName>stm32l0xx_hal.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>stm32l0xx_hal_cortex.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_cortex.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>stm32l0xx_hal_dma.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_dma.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>stm32l0xx_hal_flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>stm32l0xx_hal_flash_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ex.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>stm32l0xx_hal_flash_ramfunc.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_flash_ramfunc.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>stm32l0xx_hal_gpio.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>stm32l0xx_hal_i2c.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_i2c.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>stm32l0xx_hal_i2c_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_i2c_ex.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>stm32l0xx_hal_pwr.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_pwr.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>stm32l0xx_hal_pwr_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_pwr_ex.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>stm32l0xx_hal_rcc.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_rcc.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>stm32l0xx_hal_rcc_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_rcc_ex.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>stm32l0xx_hal_tim.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>stm32l0xx_hal_tim_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>stm32l0xx_hal_uart.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>stm32l0xx_hal_uart_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>stm32l0xx_ll_adc.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_ll_adc.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>stm32l0xx_ll_gpio.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_ll_gpio.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>stm32l0xx_ll_rcc.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_ll_rcc.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>stm32l0xx_ll_rtc.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_ll_rtc.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>stm32l0xx_ll_spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_ll_spi.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>stm32l0xx_ll_usart.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_ll_usart.c</FilePath>
             </File>
-          </Files>
-          <Files>
-            <File>
-              <FileName>soc_impl.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../aos/soc_impl.c</FilePath>
-            </File>
-          </Files>
-          <Files>
             <File>
               <FileName>flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../hal/flash.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../src/STM32L071KB/runapp/main.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>stm32l0xx_hal_msp.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../src/STM32L071KB/runapp/stm32l0xx_hal_msp.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>stm32l0xx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../src/STM32L071KB/runapp/stm32l0xx_it.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>system_stm32l0xx.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../src/STM32L071KB/runapp/system_stm32l0xx.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>startup_stm32l071xx_armcc.s</FileName>
               <FileType>2</FileType>
               <FilePath>../../../../././platform/mcu/stm32l0xx/stm32l071kb/../src/STM32L071KB/startup_stm32l071xx_armcc.s</FilePath>
             </File>
+            <File>
+              <FileName>soc_impl.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\platform\mcu\stm32l0xx\aos\soc_impl.c</FilePath>
+            </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>lorawan</GroupName>
           <GroupOption>
+            <CommonProperty>
+              <UseCPPCompiler>0</UseCPPCompiler>
+              <RVCTCodeConst>0</RVCTCodeConst>
+              <RVCTZI>0</RVCTZI>
+              <RVCTOtherData>0</RVCTOtherData>
+              <ModuleSelection>0</ModuleSelection>
+              <IncludeInBuild>1</IncludeInBuild>
+              <AlwaysBuild>0</AlwaysBuild>
+              <GenerateAssemblyFile>0</GenerateAssemblyFile>
+              <AssembleAssemblyFile>0</AssembleAssemblyFile>
+              <PublicsOnly>0</PublicsOnly>
+              <StopOnExitCode>3</StopOnExitCode>
+              <CustomArgument></CustomArgument>
+              <IncludeLibraryModules></IncludeLibraryModules>
+              <ComprImg>0</ComprImg>
+            </CommonProperty>
             <GroupArmAds>
               <Cads>
+                <interw>2</interw>
+                <Optim>0</Optim>
+                <oTime>2</oTime>
+                <SplitLS>2</SplitLS>
+                <OneElfS>2</OneElfS>
+                <Strict>2</Strict>
+                <EnumInt>2</EnumInt>
+                <PlainCh>2</PlainCh>
+                <Ropi>2</Ropi>
+                <Rwpi>2</Rwpi>
+                <wLevel>0</wLevel>
+                <uThumb>2</uThumb>
+                <uSurpInc>2</uSurpInc>
+                <uC99>2</uC99>
+                <useXO>2</useXO>
+                <v6Lang>0</v6Lang>
+                <v6LangP>0</v6LangP>
+                <vShortEn>2</vShortEn>
+                <vShortWch>2</vShortWch>
+                <v6Lto>0</v6Lto>
+                <v6WtE>0</v6WtE>
+                <v6Rtti>2</v6Rtti>
                 <VariousControls>
-                  <MiscControls>--via opts/stm32l071kb.c_opts</MiscControls>
+                  <MiscControls>--via opts/lorawan.c_opts</MiscControls>
+                  <Define></Define>
+                  <Undefine></Undefine>
+                  <IncludePath></IncludePath>
                 </VariousControls>
               </Cads>
               <Aads>
+                <interw>2</interw>
+                <Ropi>2</Ropi>
+                <Rwpi>2</Rwpi>
+                <thumb>2</thumb>
+                <SplitLS>2</SplitLS>
+                <SwStkChk>2</SwStkChk>
+                <NoWarn>2</NoWarn>
+                <uSurpInc>2</uSurpInc>
+                <useXO>2</useXO>
+                <uClangAs>2</uClangAs>
                 <VariousControls>
-                  <MiscControls>--via opts/stm32l071kb.as_opts</MiscControls>
+                  <MiscControls>--via opts/lorawan.as_opts</MiscControls>
+                  <Define></Define>
+                  <Undefine></Undefine>
+                  <IncludePath></IncludePath>
                 </VariousControls>
               </Aads>
             </GroupArmAds>
           </GroupOption>
-        </Group>
-        <Group>
-          <GroupName>lorawan</GroupName>
           <Files>
             <File>
               <FileName>linkwan.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/protocols/lorawan/linkwan/linkwan.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>RegionCN470A.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/protocols/lorawan/linkwan/region/RegionCN470A.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>LoRaMac.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/protocols/lorawan/lora/mac/LoRaMac.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>LoRaMacCrypto.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/protocols/lorawan/lora/mac/LoRaMacCrypto.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>Region.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/protocols/lorawan/lora/mac/region/Region.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>RegionCommon.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/protocols/lorawan/lora/mac/region/RegionCommon.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>aes.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/protocols/lorawan/lora/system/crypto/aes.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>cmac.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/protocols/lorawan/lora/system/crypto/cmac.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/protocols/lorawan/lora/system/delay.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>low_power.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/protocols/lorawan/lora/system/low_power.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>timeServer.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/protocols/lorawan/lora/system/timeServer.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>utilities.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/protocols/lorawan/lora/system/utilities.c</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>rhino</GroupName>
           <GroupOption>
+            <CommonProperty>
+              <UseCPPCompiler>0</UseCPPCompiler>
+              <RVCTCodeConst>0</RVCTCodeConst>
+              <RVCTZI>0</RVCTZI>
+              <RVCTOtherData>0</RVCTOtherData>
+              <ModuleSelection>0</ModuleSelection>
+              <IncludeInBuild>1</IncludeInBuild>
+              <AlwaysBuild>0</AlwaysBuild>
+              <GenerateAssemblyFile>0</GenerateAssemblyFile>
+              <AssembleAssemblyFile>0</AssembleAssemblyFile>
+              <PublicsOnly>0</PublicsOnly>
+              <StopOnExitCode>3</StopOnExitCode>
+              <CustomArgument></CustomArgument>
+              <IncludeLibraryModules></IncludeLibraryModules>
+              <ComprImg>0</ComprImg>
+            </CommonProperty>
             <GroupArmAds>
               <Cads>
+                <interw>2</interw>
+                <Optim>0</Optim>
+                <oTime>2</oTime>
+                <SplitLS>2</SplitLS>
+                <OneElfS>2</OneElfS>
+                <Strict>2</Strict>
+                <EnumInt>2</EnumInt>
+                <PlainCh>2</PlainCh>
+                <Ropi>2</Ropi>
+                <Rwpi>2</Rwpi>
+                <wLevel>0</wLevel>
+                <uThumb>2</uThumb>
+                <uSurpInc>2</uSurpInc>
+                <uC99>2</uC99>
+                <useXO>2</useXO>
+                <v6Lang>0</v6Lang>
+                <v6LangP>0</v6LangP>
+                <vShortEn>2</vShortEn>
+                <vShortWch>2</vShortWch>
+                <v6Lto>0</v6Lto>
+                <v6WtE>0</v6WtE>
+                <v6Rtti>2</v6Rtti>
                 <VariousControls>
-                  <MiscControls>--via opts/lorawan.c_opts</MiscControls>
+                  <MiscControls>--via opts/rhino.c_opts</MiscControls>
+                  <Define></Define>
+                  <Undefine></Undefine>
+                  <IncludePath></IncludePath>
                 </VariousControls>
               </Cads>
               <Aads>
+                <interw>2</interw>
+                <Ropi>2</Ropi>
+                <Rwpi>2</Rwpi>
+                <thumb>2</thumb>
+                <SplitLS>2</SplitLS>
+                <SwStkChk>2</SwStkChk>
+                <NoWarn>2</NoWarn>
+                <uSurpInc>2</uSurpInc>
+                <useXO>2</useXO>
+                <uClangAs>2</uClangAs>
                 <VariousControls>
-                  <MiscControls>--via opts/lorawan.as_opts</MiscControls>
+                  <MiscControls>--via opts/rhino.as_opts</MiscControls>
+                  <Define></Define>
+                  <Undefine></Undefine>
+                  <IncludePath></IncludePath>
                 </VariousControls>
               </Aads>
             </GroupArmAds>
           </GroupOption>
-        </Group>
-        <Group>
-          <GroupName>rhino</GroupName>
           <Files>
             <File>
               <FileName>k_fifo.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/rhino/common/k_fifo.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>k_trace.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/rhino/common/k_trace.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>k_buf_queue.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/rhino/core/k_buf_queue.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>k_dyn_mem_proc.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/rhino/core/k_dyn_mem_proc.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>k_err.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/rhino/core/k_err.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>k_event.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/rhino/core/k_event.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>k_idle.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/rhino/core/k_idle.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>k_mm.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/rhino/core/k_mm.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>k_mm_blk.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/rhino/core/k_mm_blk.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>k_mm_debug.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/rhino/core/k_mm_debug.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>k_mutex.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/rhino/core/k_mutex.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>k_obj.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/rhino/core/k_obj.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>k_pend.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/rhino/core/k_pend.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>k_queue.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/rhino/core/k_queue.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>k_ringbuf.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/rhino/core/k_ringbuf.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>k_sched.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/rhino/core/k_sched.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>k_sem.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/rhino/core/k_sem.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>k_stats.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/rhino/core/k_stats.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>k_sys.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/rhino/core/k_sys.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>k_task.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/rhino/core/k_task.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>k_task_sem.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/rhino/core/k_task_sem.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>k_tick.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/rhino/core/k_tick.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>k_time.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/rhino/core/k_time.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>k_timer.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/rhino/core/k_timer.c</FilePath>
             </File>
-          </Files>
-          <Files>
             <File>
               <FileName>k_workqueue.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../.././kernel/rhino/core/k_workqueue.c</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>vcall</GroupName>
           <GroupOption>
+            <CommonProperty>
+              <UseCPPCompiler>0</UseCPPCompiler>
+              <RVCTCodeConst>0</RVCTCodeConst>
+              <RVCTZI>0</RVCTZI>
+              <RVCTOtherData>0</RVCTOtherData>
+              <ModuleSelection>0</ModuleSelection>
+              <IncludeInBuild>1</IncludeInBuild>
+              <AlwaysBuild>0</AlwaysBuild>
+              <GenerateAssemblyFile>0</GenerateAssemblyFile>
+              <AssembleAssemblyFile>0</AssembleAssemblyFile>
+              <PublicsOnly>0</PublicsOnly>
+              <StopOnExitCode>3</StopOnExitCode>
+              <CustomArgument></CustomArgument>
+              <IncludeLibraryModules></IncludeLibraryModules>
+              <ComprImg>0</ComprImg>
+            </CommonProperty>
             <GroupArmAds>
               <Cads>
+                <interw>2</interw>
+                <Optim>0</Optim>
+                <oTime>2</oTime>
+                <SplitLS>2</SplitLS>
+                <OneElfS>2</OneElfS>
+                <Strict>2</Strict>
+                <EnumInt>2</EnumInt>
+                <PlainCh>2</PlainCh>
+                <Ropi>2</Ropi>
+                <Rwpi>2</Rwpi>
+                <wLevel>0</wLevel>
+                <uThumb>2</uThumb>
+                <uSurpInc>2</uSurpInc>
+                <uC99>2</uC99>
+                <useXO>2</useXO>
+                <v6Lang>0</v6Lang>
+                <v6LangP>0</v6LangP>
+                <vShortEn>2</vShortEn>
+                <vShortWch>2</vShortWch>
+                <v6Lto>0</v6Lto>
+                <v6WtE>0</v6WtE>
+                <v6Rtti>2</v6Rtti>
                 <VariousControls>
-                  <MiscControls>--via opts/rhino.c_opts</MiscControls>
+                  <MiscControls>--via opts/vcall.c_opts</MiscControls>
+                  <Define></Define>
+                  <Undefine></Undefine>
+                  <IncludePath></IncludePath>
                 </VariousControls>
               </Cads>
               <Aads>
+                <interw>2</interw>
+                <Ropi>2</Ropi>
+                <Rwpi>2</Rwpi>
+                <thumb>2</thumb>
+                <SplitLS>2</SplitLS>
+                <SwStkChk>2</SwStkChk>
+                <NoWarn>2</NoWarn>
+                <uSurpInc>2</uSurpInc>
+                <useXO>2</useXO>
+                <uClangAs>2</uClangAs>
                 <VariousControls>
-                  <MiscControls>--via opts/rhino.as_opts</MiscControls>
+                  <MiscControls>--via opts/vcall.as_opts</MiscControls>
+                  <Define></Define>
+                  <Undefine></Undefine>
+                  <IncludePath></IncludePath>
                 </VariousControls>
               </Aads>
             </GroupArmAds>
           </GroupOption>
-        </Group>
-        <Group>
-          <GroupName>vcall</GroupName>
           <Files>
             <File>
               <FileName>aos_rhino.c</FileName>
@@ -1126,22 +1518,9 @@
               <FilePath>../../../.././kernel/vcall/aos/aos_rhino.c</FilePath>
             </File>
           </Files>
-          <GroupOption>
-            <GroupArmAds>
-              <Cads>
-                <VariousControls>
-                  <MiscControls>--via opts/vcall.c_opts</MiscControls>
-                </VariousControls>
-              </Cads>
-              <Aads>
-                <VariousControls>
-                  <MiscControls>--via opts/vcall.as_opts</MiscControls>
-                </VariousControls>
-              </Aads>
-            </GroupArmAds>
-          </GroupOption>
         </Group>
       </Groups>
     </Target>
   </Targets>
+
 </Project>
