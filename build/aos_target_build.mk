@@ -286,9 +286,9 @@ $(LDS_FILE_DIR):
 %/.i:
 	$(QUIET)$(call MKDIR, $(dir $@))
 
-OBJ_FILES:=$(shell find out/$(CLEANED_BUILD_STRING) -name *.o)
+OBJ_FILES=$(shell find out/$(CLEANED_BUILD_STRING) -name *.o)
 	
-LINK_OPTS := $(AOS_SDK_LINK_SCRIPT_CMD) $(call COMPILER_SPECIFIC_LINK_MAP,$(MAP_OUTPUT_FILE)) $(OBJ_FILES) $(AOS_SDK_LDFLAGS)
+LINK_OPTS = $(AOS_SDK_LINK_SCRIPT_CMD) $(call COMPILER_SPECIFIC_LINK_MAP,$(MAP_OUTPUT_FILE)) $(OBJ_FILES) $(AOS_SDK_LDFLAGS)
 	
 # FIXME GCC Whole archive not ready in all platform
 $(LINK_OPTS_FILE): $(OUTPUT_DIR)/config.mk $(LDS_FILES)
